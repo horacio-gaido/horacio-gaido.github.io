@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "⁕ [Tarea a relizar (que sea un verbo)]: ",
       "⁕ [Contexto / A que se parece / En que entorno]: ",
       "⁕ [Ejemplo]: ",
-      "⁕ [Actúa como / como 20 años de experiencia]: ",
+      "⁕ [Actúa como]: ",
       "⁕ [Con 30 años de experiencia en]: ",
       "⁕ [Formato de la respuesta]: ",
       "⁕ [Tono de la respuesta]: "
