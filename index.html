@@ -1,673 +1,978 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-        <meta name="description" content="Horacio Gaido | Licenciado en Administración | MBA | Data Analyst" />
-        <meta name="robots" content="index,follow" />
+        <title>Horacio Gaido | Analista de Datos · Business Intelligence · Automatización</title>
+        <meta name="description" content="Horacio Gaido, analista de datos y Business Intelligence en Mendoza, Argentina. ETL con Python y SQL Server, tableros en Power BI y automatización de procesos con Power Automate." />
         <meta name="author" content="Horacio Gaido" />
-        <title>Horacio Gaido</title>
+        <meta name="robots" content="index,follow" />
+        <link rel="canonical" href="https://horacio-gaido.github.io/" />
+
+        <!-- Vista previa al compartir el link (LinkedIn, WhatsApp, etc.) -->
+        <meta property="og:type" content="profile" />
+        <meta property="og:locale" content="es_AR" />
+        <meta property="og:url" content="https://horacio-gaido.github.io/" />
+        <meta property="og:site_name" content="Horacio Gaido" />
+        <meta property="og:title" content="Horacio Gaido | Analista de Datos · Business Intelligence · Automatización" />
+        <meta property="og:description" content="ETL con Python y SQL Server, tableros en Power BI y automatización de procesos con Power Automate. Mendoza, Argentina." />
+        <meta property="og:image" content="https://horacio-gaido.github.io/images/horacio_gaido.jpeg" />
+        <meta property="og:image:alt" content="Foto de Horacio Gaido" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="theme-color" content="#ad5030" />
+
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Jhhp9sslyAUKcZ1rJfqz/xw2IIxlRrcQIjHtj/0bEE8JF+T9fVYz+eDp7VgdrBXaOFGt+50PjhlDfrtV3qB0kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="icon" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700&amp;display=swap" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i&amp;display=swap" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- Ajustes propios sobre la plantilla: contraste, bloques nuevos e impresión -->
+        <style>
+            :root {
+                --ink: #d2d6db;
+                --ink-soft: #a9b0b8;
+                --accent-text: #ea8a63;
+                --surface: #2b2b2b;
+                --line: #3d3d3d;
+            }
+            html { scroll-behavior: smooth; }
+            body { color: var(--ink); }
+            section[id] { scroll-margin-top: 4rem; }
+            @media (min-width: 992px) { section[id] { scroll-margin-top: 0; } }
+
+            /* Contraste */
+            #sideNav { background-color: #ad5030 !important; }
+            #sideNav .navbar-nav .nav-item .nav-link { color: rgba(255, 255, 255, 0.85); }
+            #sideNav .navbar-nav .nav-item .nav-link:hover,
+            #sideNav .navbar-nav .nav-item .nav-link.active { color: #fff; }
+            .resume-section a { color: var(--accent-text); }
+            .resume-section a:hover { color: #f3ab8d; text-decoration: underline; }
+            .resume-section .social-icons .social-icon,
+            .resume-section .social-icons .social-icon:hover { color: #fff; text-decoration: none; }
+            a:focus-visible, summary:focus-visible, button:focus-visible {
+                outline: 2px solid #fff; outline-offset: 3px; border-radius: 2px;
+            }
+            .skip-link {
+                position: absolute; left: -999px; top: 0; z-index: 2000;
+                background: #fff; color: #222; padding: 0.6rem 1rem; font-weight: 800;
+            }
+            .skip-link:focus { left: 0; }
+
+            /* Secciones: sin el alto de pantalla completa de la plantilla */
+            section.resume-section:not(#about) { min-height: 0; padding-top: 4rem; padding-bottom: 4rem; }
+            .resume-section h2 { color: #fff; }
+            .resume-section h3 { color: #fff; font-size: 1.75rem; line-height: 1.15; }
+            .section-intro { color: var(--ink-soft); max-width: 46rem; margin-top: -1.5rem; margin-bottom: 2.5rem; }
+
+            /* Sobre mí */
+            .about-photo { width: 6.5rem; height: 6.5rem; object-fit: cover; border: 0.3rem solid rgba(255, 255, 255, 0.2); }
+            .headline { color: var(--accent-text); font-size: 1.3rem; line-height: 1.25; margin-bottom: 0.4rem; }
+            @media (min-width: 768px) { .headline { font-size: 1.6rem; } }
+            .about-text p { font-size: 1.15rem; max-width: 46rem; margin-bottom: 1rem; }
+            .about-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+            .about-actions .social-icons .social-icon { margin-right: 0.9rem; }
+            .btn-outline-accent {
+                display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem;
+                padding: 0.5rem 1.1rem; border: 1px solid var(--accent-text); border-radius: 0.4rem;
+                background: transparent; color: var(--accent-text); font-weight: 800; font-family: inherit; font-size: 1rem;
+            }
+            .btn-outline-accent:hover { background: #ad5030; border-color: #ad5030; color: #fff; }
+
+            /* Experiencia */
+            .xp { margin-bottom: 3.5rem; }
+            .xp:last-child { margin-bottom: 0; }
+            .xp-head { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; }
+            @media (min-width: 768px) {
+                .xp-head { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+                .xp-date { text-align: right; flex-shrink: 0; }
+            }
+            .xp-head .subheading { color: var(--ink-soft); font-size: 1.4rem; }
+            .xp-date { color: var(--accent-text); font-weight: 800; white-space: nowrap; }
+            .xp-date span { display: block; color: var(--ink-soft); font-weight: 400; white-space: normal; }
+            .xp-about { color: var(--ink-soft); max-width: 50rem; }
+            .xp ul { padding-left: 1.2rem; max-width: 52rem; }
+            .xp li { margin-bottom: 0.4rem; }
+            .xp li strong, .role-title, .tools strong, .label { color: #fff; }
+            .tools { margin: 0.75rem 0 0; max-width: 52rem; }
+            .role { border-left: 3px solid var(--line); padding-left: 1.1rem; margin-top: 1.6rem; }
+            .role-head { margin-bottom: 0.5rem; }
+            .role-title {
+                font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                font-size: 1.15rem; font-weight: 800; text-transform: none; margin: 0;
+            }
+            .role-date { color: var(--accent-text); font-weight: 800; font-size: 0.95rem; }
+            .role-date span { color: var(--ink-soft); font-weight: 400; }
+            .label { font-weight: 800; margin: 1rem 0 0.4rem; }
+
+            /* Desplegables */
+            details.more { margin-top: 0.5rem; }
+            details.more > summary {
+                display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem;
+                cursor: pointer; list-style: none; color: var(--accent-text); font-weight: 800;
+            }
+            details.more > summary::-webkit-details-marker { display: none; }
+            details.more > summary::before { content: "+"; display: inline-block; width: 1rem; text-align: center; font-size: 1.2rem; line-height: 1; }
+            details.more[open] > summary::before { content: "−"; }
+            details.more > summary:hover { color: #f3ab8d; }
+            details.more .more-body { padding: 0.25rem 0 0.5rem; }
+
+            /* Skills */
+            .skill-grid { display: grid; gap: 1.75rem 2.5rem; }
+            @media (min-width: 992px) { .skill-grid { grid-template-columns: 1fr 1fr; } }
+            .skill-group h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+            .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
+            .chips li {
+                background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+                padding: 0.3rem 0.85rem; font-size: 0.95rem; color: var(--ink);
+            }
+            .skill-note { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 0.75rem; }
+
+            /* Proyectos */
+            .project-grid { display: grid; gap: 1.5rem; }
+            @media (min-width: 1200px) { .project-grid { grid-template-columns: 1fr 1fr; } }
+            .project {
+                background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem;
+                padding: 1.5rem; display: flex; flex-direction: column;
+            }
+            .project h3 {
+                font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                font-size: 1.2rem; font-weight: 800; text-transform: none; line-height: 1.3; margin-bottom: 0.4rem;
+            }
+            .project-meta { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 0.9rem; }
+            .project .chips { margin: 0.25rem 0 1.1rem; }
+            .project .chips li { background: #222; font-size: 0.85rem; }
+            .project-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: auto; font-weight: 800; }
+            .project-links a { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.75rem; }
+
+            /* Educación */
+            .edu { display: flex; flex-direction: column; gap: 0.15rem; margin-bottom: 1.75rem; }
+            @media (min-width: 768px) { .edu { flex-direction: row; justify-content: space-between; gap: 2rem; } }
+            .edu h3 { font-size: 1.5rem; margin: 0; }
+            .edu .where { color: var(--ink-soft); }
+            .edu .extra { color: var(--ink); }
+            .edu-date { color: var(--accent-text); font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+
+            /* Certificaciones */
+            .cert-group { border-top: 1px solid var(--line); }
+            .cert-group:last-of-type { border-bottom: 1px solid var(--line); }
+            .cert-group > summary { width: 100%; justify-content: flex-start; padding: 0.35rem 0; }
+            .cert-group .count { color: var(--ink-soft); font-weight: 400; }
+            .cert-list { list-style: none; padding: 0 0 0.75rem 1.5rem; margin: 0; max-width: 52rem; }
+            .cert-list li { padding: 0.25rem 0; }
+            .cert-list .meta { color: var(--ink-soft); }
+
+            footer.site-footer { padding: 2rem 1rem 3rem; color: var(--ink-soft); font-size: 0.9rem; }
+            @media (min-width: 992px) { footer.site-footer { padding-left: 3rem; } }
+
+            @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+            /* Versión para imprimir o guardar como PDF */
+            @media print {
+                @page { margin: 1.6cm 1.5cm; }
+                html, body { background: #fff !important; color: #1b1b1b !important; }
+                body { padding: 0 !important; font-size: 10.5pt; }
+                #sideNav, .skip-link, .no-print, hr { display: none !important; }
+                section.resume-section, section.resume-section:not(#about) {
+                    display: block; min-height: 0; max-width: none; padding: 0 0 0.9cm !important;
+                }
+                .resume-section h1 { color: #000 !important; font-size: 30pt; }
+                .resume-section h2 { color: #000; font-size: 18pt; margin-bottom: 0.4cm !important; border-bottom: 1px solid #999; }
+                .resume-section h3, .role-title, .xp li strong, .tools strong, .label, .project h3 { color: #000; }
+                .resume-section h3 { font-size: 13pt; }
+                .text-primary, .headline, .xp-date, .role-date, .edu-date, .resume-section a,
+                details.more > summary { color: #8a3d1f !important; }
+                .xp-head .subheading, .xp-date span, .role-date span, .xp-about, .section-intro,
+                .project-meta, .edu .where, .edu .extra, .cert-list .meta, .cert-group .count,
+                .skill-note, footer.site-footer { color: #444 !important; }
+                .about-text p { font-size: 10.5pt; max-width: none; }
+                .about-photo { display: none !important; }
+                .section-intro { margin: 0 0 0.4cm; max-width: none; }
+                .subheading, .xp-head .subheading { font-size: 11pt; }
+                .headline { font-size: 13pt; }
+                .xp ul, .tools, .xp-about { max-width: none; }
+                .xp li { margin-bottom: 0.1cm; }
+                .project { padding: 0.4cm; }
+                .project-grid, .skill-grid { gap: 0.4cm; }
+                .project-links a { min-height: 0; }
+                .xp { margin-bottom: 0.7cm; }
+                .role { border-left-color: #bbb; }
+                .chips li, .project, .project .chips li { background: #fff !important; border-color: #bbb !important; color: #1b1b1b !important; }
+                .project, .role, .edu, .skill-group, .cert-list li { break-inside: avoid; }
+                h2, h3, .role-head, .xp-head, summary { break-after: avoid; }
+                details.more:not(.cert-group), .cert-list { display: none !important; }
+                .cert-group, .cert-group:last-of-type { border: 0; }
+                .cert-group > summary { min-height: 0; padding: 0.08cm 0; color: #1b1b1b !important; font-weight: 400; }
+                details.more > summary::before { content: "•"; }
+                .print-note { display: block !important; color: #444; margin-top: 0.4cm; }
+                .contact-print { display: block !important; color: #444; }
+            }
+            .contact-print, .print-note { display: none; }
+        </style>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Horacio Gaido",
+            "jobTitle": "Analista de Datos | Business Intelligence",
+            "url": "https://horacio-gaido.github.io/",
+            "image": "https://horacio-gaido.github.io/images/horacio_gaido.jpeg",
+            "email": "mailto:horaciogaido@gmail.com",
+            "address": { "@type": "PostalAddress", "addressLocality": "Mendoza", "addressCountry": "AR" },
+            "worksFor": { "@type": "Organization", "name": "Midas Consultores" },
+            "alumniOf": [
+                { "@type": "CollegeOrUniversity", "name": "Universidad Nacional de Cuyo" },
+                { "@type": "CollegeOrUniversity", "name": "EUNCET Business School" }
+            ],
+            "knowsAbout": ["Análisis de datos", "Business Intelligence", "ETL", "Python", "SQL Server", "Power BI", "Power Automate"],
+            "sameAs": [
+                "https://www.linkedin.com/in/horacio-gaido",
+                "https://github.com/horacio-gaido",
+                "https://platzi.com/p/horaciogaido/"
+            ]
+        }
+        </script>
     </head>
 
     <body id="page-top">
+        <a class="skip-link" href="#about">Saltar al contenido</a>
+
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" aria-label="Secciones">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Horacio Gaido</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/horacio_gaido.jpeg" alt="horacio gaido" /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/horacio_gaido.jpeg" alt="Foto de Horacio Gaido" /></span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Abrir o cerrar el menú"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Sobre mí</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experiencia</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Educación</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Educación</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Certificaciones</a></li>
                 </ul>
             </div>
         </nav>
+
         <!-- Page Content-->
-        <div class="container-fluid p-0">
+        <main class="container-fluid p-0">
+
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
+                    <img class="about-photo rounded-circle d-lg-none mb-4" src="images/horacio_gaido.jpeg" alt="Foto de Horacio Gaido" />
                     <h1 class="mb-0">
                         Horacio
                         <span class="text-primary">Gaido</span>
                     </h1>
+                    <div class="subheading headline">Analista de Datos · Business Intelligence · Automatización de procesos</div>
                     <div class="subheading mb-5">
-                        Mendoza (Argentina)·
+                        Mendoza, Argentina ·
                         <a href="mailto:horaciogaido@gmail.com">horaciogaido@gmail.com</a>
                     </div>
-                    <p class="lead mb-5">Soy un profesional con más de 16 años de experiencia en análisis de datos, administración y finanzas. Actualmente, estoy enfocado en perfeccionar mis habilidades de programación con Python y Data Science. <br><br> He destacado en el área de Business Intelligence y Control de Gestión, demostrando una capacidad analítica excepcional, atención al detalle y pensamiento crítico para analizar, definir y priorizar.<br><br> Soy colaborativo y resuelvo problemas con actitud positiva y proactiva. Me gusta trabajar con equipos multidisciplinarios, donde puedo comunicarme de manera efectiva. Me considero organizado, responsable, autónomo, curioso, orientado a objetivos y honesto, por sobre todas las cosas.<br><br> Además de mi pasión por la lectura y la tecnología, disfruto del montañismo, la escalada en roca y running, lo que me ha enseñado a perseverar en los desafíos más difíciles.</p>
-                    <div class="social-icons">
-                        <a class="social-icon" href="http://www.linkedin.com/in/horacio-gaido"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/horacio-gaido/horacio-gaido/blob/main/README.md"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="https://platzi.com/p/horaciogaido/"><i class="fab fa fa-code"></i></a>
+                    <p class="contact-print">linkedin.com/in/horacio-gaido · github.com/horacio-gaido · horacio-gaido.github.io</p>
 
+                    <div class="about-text">
+                        <p>Soy analista de datos y Business Intelligence. Desde 2023 trabajo en Midas Consultores para YPF S.A., donde desarrollo procesos ETL con Python y SQL Server, tableros en Power BI y automatizaciones con Power Automate para el monitoreo de los servicios de TI a nivel nacional.</p>
+                        <p>Llegué a los datos después de más de 15 años en administración, finanzas y control de gestión, y hoy sumo casi 20 años de trayectoria profesional. Esa base me permite entender las reglas de negocio que hay detrás de cada indicador y conversar tanto con usuarios funcionales como con equipos técnicos.</p>
+                        <p>Me importa que los datos sean confiables: valido antes de cargar, dejo trazabilidad de cada ejecución y documento las reglas que aplico. Soy organizado, autónomo y curioso, y disfruto trabajar con equipos multidisciplinarios.</p>
+                        <p>Fuera del trabajo me gustan la lectura, el montañismo, la escalada en roca y el running, que me enseñaron a perseverar en los desafíos más difíciles.</p>
+                    </div>
+
+                    <div class="about-actions no-print">
+                        <div class="social-icons">
+                            <a class="social-icon" href="https://www.linkedin.com/in/horacio-gaido" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Horacio Gaido (se abre en una pestaña nueva)" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                            <a class="social-icon" href="https://github.com/horacio-gaido" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Horacio Gaido (se abre en una pestaña nueva)" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a class="social-icon" href="https://platzi.com/p/horaciogaido/" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Horacio Gaido en Platzi (se abre en una pestaña nueva)" title="Platzi"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                            <a class="social-icon" href="mailto:horaciogaido@gmail.com" aria-label="Enviar un correo a Horacio Gaido" title="Correo"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                        </div>
+                        <button class="btn-outline-accent" type="button" id="printCv"><i class="fas fa-file-pdf" aria-hidden="true"></i> Guardar como PDF</button>
                     </div>
                 </div>
             </section>
             <hr class="m-0" />
+
             <!-- Experience-->
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Experiencia</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Administración y finanzas | Controller | Data Analyst</h3>
-                            <div class="subheading mb-3">Tecnet Argentina S.A. </div>
-                            <p>TECNET ARGENTINA SA - WIBER es un Proveedor de Servicios de Internet (ISP), empresa experta en soluciones de conectividad. Realiza conexiones a medida a través de Fibra Óptica o Wireless. Brinda servicios integrales tanto para clientes residenciales, pymes o empresas corporativas.<br><br>
-                                Sector: Telecomunicaciones<br>
-                                <div class="subheading mb-3">2020-2022 </div>
-                                <span>Funciones:</span>
-                                <ul> 
-                                    <li>Coordinar los procesos administrativo financieros con el objetivo de asegurar la provisión de información de gestión para la toma de decisiones, la disponibilidad de recursos financieros, materiales y servicios requeridos para el funcionamiento de la empresa.</li>
-                                    <li>Vínculo entre los desarrolladores del Software de gestión y la empresa,relevamiento de requerimientos, control y seguimiento para que se lleven a cabo la implementación del software.</li>
-                                    <li>Extracción y consulta de la base de datos para obtener información clave sobre la empresa.</li>
-                                    <li>Recopilación e interpretación de datos.</li>
-                                    <li>Control de indicadores claves de gestión para descubrir oportunidades de mejora en la ejecución de las diferentes acciones.</li>
-                                    <li>Determinar y controlar KPI de gestión para la mejora continua en la toma de decisiones.</li>
-                                    <li>Pago a proveedores.</li>
-                                    <li>Metodología ágil (SCRUM) y OKRs.</li>
-                                    <li>Creación de dashboards, reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas, costo y  resultados.</li>
-                                </ul>
 
-                                <span>Logros:</span><br>
-                                <ul> 
-                                    <li>Responder de forma adecuada en tiempos de pandemia, debido al                                     crecimiento exponencial de la firma, por ser empresa proveedora de servicios de internet y el aumento de trabajos remotos.</li>
-                                    <li>Colaborar en la implementación del nuevo software de gestión.</li>
-                                    <li>Aumentar los controles de indicadores claves.</li>
-                                    <li>Implementación de cobranza por medios digitales: CBU, Visa, Mastercard, MercadoPago, PagoMisCuentas, Naranja, etc.</li>
-                                    <li>Digitalización de documentación contable.</li>
-                                    <li>Cerrar carpetas de trámites de ANR otorgados a la firma.</li></ul> 
-
-                                    <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Power BI | Tableau | Google Sheets | Google Docs | Trello | Anatod | Freshchat</li>
-                                </ul>
-
-
-
-
-                                <div class="subheading mb-3">2018-2020 </div>
-                            <span>Funciones:</span>
-                                <ul>
-                                    <li>Planificación y direccionamiento estratégico en conjunto con el CEO de la firma para el cumplimiento de las metas propuestas.</li>
-                                    <li>Obtener, procesar y analizar datos provenientes de diversas fuentes (ETL) para su posterior análisis.</li>
-                                    <li>Asegurar la entrega de reportes al CEO y la utilización de los indicadores y tableros de control para determinar la evolución del negocio.</li>
-                                    <li>Crear y mantener cuadros de mando de Business Intelligence.</li>
-                                    <li>Nexo entre estudio contable y la empresa para la presentación de IIBB, IVA, Balances Anuales y otras obligaciones fiscales.</li>
-                                    <li>Monitorear pagos recibidos de grandes clientes y conciliaciones de cuentas.</li>
-                                    <li>Análisis y cálculo horas extras del personal.</li>
-                                    <li>Conciliaciones bancarias y Fiserv.</li>
-                                    <li>Negociaciones en alianzas estratégicas.</li>
-                                    <li>Licitaciones.</li>
-                                    <li>Resolución de conflictos con clientes.</li>
-                                    <li>Creación de nuevas unidades de negocios.</li>
-                                    <li>Creación de KPI y de métricas para medir el negocio.</li>
-                                    <li>Auditorias contables, atención al cliente y operaciones.</li>
-                                    <li>Control de cobranzas y morosidad.</li>
-                                    <li>Análisis de los estados financieros.</li>
-                                    <li>Utilizar datos para descubrir tareas que se pueden automatizar.</li>
-                                    <li>Localizar y definir nuevas oportunidades de mejora de procesos.</li>
-                                    <li>Gestiones ante el Ente Nacional de Telecomunicaciones.</li>
-
-
-                                </ul>
-
-                                <span>Logros:</span><br>
-                                <ul> 
-                                    <li>Estrategia comercial, gestión y planificación para comenzar la expansión masiva de fibra óptica mediante convenio de alquiler de postes con empresa distribuidora de energía de la provincia.</li>
-                                    <li>Implementación del control de stock y control de flota de vehículos.</li>
-                                    <li>Cálculo del costo de instalaciones.</li>
-                                    <li>Disminuir las tardanzas en forma significativa.</li>
-                                    <li>Mejorar los procesos de reclutamiento y selección.</li>
-                                    <li>Cumplimentar normas de higiene y seguridad.</li>
-                                    <li>Control a las cuentas de grandes clientes.</li>
-                                    <li>Implementación de scoring de clientes vía Equifax (Veraz) y diminución de la incobrabilidad y la morosidad.</li>
-                                </ul> 
-
-                                <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Google Sheets | Google Docs | Trello</li>
-                                </ul>
-
-                            </p>
-                                 </div>
-
-                        <div class="flex-shrink-0"><span class="text-primary">2019 - 2022</span></div>
-                    </div>
-
-
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Consultor Independiente</h3>
-                            <div class="subheading mb-3"></div>
-                            <p><br>
-                                <div class="subheading mb-3">2018 </div>
-                                <span>Funciones:</span>
-                                <ul> 
-                                    <li>Estructurar flujos ETL y su arquitectura. Extraer, transformar y cargar datos para analítica  e interpretación de datos.</li>
-                                    <li>Reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas y resultados.</li>
-                                    <li>Análisis, control y seguimiento de los costos.</li>
-                                    <li>Direccionamiento estratégico en conjunto con los Gerentes Generales de las firmas para el cumplimiento de las metas propuestas.</li>
-                                    <li>Seguimiento y control de tareas.</li>
-                                    <li>Planificación Estratégica, entre otras tareas.</li>
-                                    <li>Crear y mantener cuadros de mando de Business Intelligence.</li>
-                                    <li>Creación de KPI y de métricas para medir el negocio.</li>
-                                    <li>Consulta de la base de datos para obtener información clave sobre la empresa.</li>
-                                    <li>Trabajar junto a equipos dentro de la empresa o el equipo de gestión para establecer las necesidades de negocio.</li>
-                                    <li>  Localizar y definir nuevas oportunidades de mejora de procesos.</li>
-                                    <li>Licitaciones.</li>
-                                    <li>Pedidos de Aportes No Reembolsables.</li>
-
-
-                                </ul>
-
-                                <span>Logros:</span><br>
-                                <ul> 
-                                    <li>Implementar el uso de dashbords de KPI de en Pymes.</li>
-                                    <li>Gestioné el Aportes No Reembolsables (ANR) de 20.000 usd de un PROYECTOS DE INVERSIÓN CON POTENCIAL DE CRECIMIENTO otorgado por el Gobierno de Mendoza.</li>
-                                    <li>Ayudé a empresas a mejorar su eficiencia y rentabilidad mediante el análisis y la optimización de sus procesos empresariales. Algunos de mis clientes han logrado aumentar sus ingresos en un 20% y reducir sus costos en un 15% gracias a mi asesoramiento.</li>
-                                    <li>He desarrollado y aplicado modelos de análisis de datos para ayudar a las empresas a tomar decisiones informadas. Estos modelos han permitido a mis clientes comprender mejor a sus clientes y el mercado, lo que les ha ayudado a tomar decisiones más acertadas y mejorar su rendimiento empresarial.</li>
-                                    <li>He logrado mejorar la eficiencia y rentabilidad de empresas a través de la aplicación de metodologías de análisis y optimización y la implementación de sistemas de control.</li>
-
-                                </ul> 
-
-                                    <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | PostgreSQL | Word | Powerpoint | Power BI | Tableau | Google Sheets | Google Docs | Trello  | Microsoft Project | Canva </li>
-                                </ul>
-                             </p>
-                                 </div>
-
-                        <div class="flex-shrink-0"><span class="text-primary">2017-2018</span></div>
-                    </div>
-
-
-
-
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Data Analyst | Adjunto al Gerente General | Administración y Finanzas | Controller </h3>
-                            <div class="subheading mb-3">José Micheli e Hijos S.R.L.</div>
-                            <p>José Micheli e Hijos SRL es una empresa comercializadora y distribuidora de alimentos en la provincia de Mendoza, Argentina. Logística de corta, media y larga distancia Nacional e Internacional.<br><br>
-                                Sector: Alimenticio, Logística y Retail<br>
-                                <div class="subheading mb-3">2013-2018 </div>
-                                <span>Funciones:</span>
-                                <ul> 
-                                    <li>Coordinar los procesos administrativo financieros con el objetivo de asegurar la provisión de información de gestión para la toma de decisiones, la disponibilidad de recursos financieros, materiales y servicios requeridos para el funcionamiento de la empresa.</li>
-                                    <li>Gestionar, conservar y examinar información generando informes de clientes estratégicos y del mercado, para la toma decisiones, tácticas, estratégicas y de marketing alineadas al objetivo de la organización y satisfacción del Cliente.</li>
-                                    <li>Asistir en la implementación del plan de trabajo a seguir para el mejoramiento de la rentabilidad de la empresa.</li>
-                                    <li>Realizar control de las contraprestaciones que deben efectivizar los clientes por convenios definidos: precios, cantidades, calidades, pesos, fechas de vencimiento e informar los desvíos detectados.</li>
-                                    <li>Reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas y resultados.</li>
-                                    <li>Análisis, control, seguimiento de costos u realizar análisis estadísticos para impulsar un proceso de decisión basado en insights cuantitativos.</li>
-                                    <li>Planificación estratégica ejecutando con eficacia lo planificado y entregando resultados de alta calidad en los plazos establecidos.</li>
-                                    <li>Negociar y garantizar la implementación de los acuerdos y dinámicas comerciales con los distintos clientes y proveedores estratégicos, de manera tal de lograr rendimiento y eficiencia en las acciones realizadas.</li>
-                                    <li>Garantizar la apropiada aplicación de la estrategia comercial en base al cumplimiento de las rutinas establecidas y el control de los indicadores de resultado y ejecución.</li>
-
-                                </ul>
-
-                                </ul> 
-                                    <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Word | Power Point | Power BI | Google Sheets | Google Docs | Bigsys | RedLine 2000 </li>
-                                </ul>
-                                </p>
-
-
-                            <p>
-                                <div class="subheading mb-3">2010-2013 </div>
-                            <span>Funciones:</span>
-                                <ul>
-                                    <li>Construir dashboards con Excel de una manera que sean más fácil de entender para tomar decisiones.</li>
-                                    <li>Presentar insights al Gerente General para tomar decisiones coherentes con la planificación estratégica.</li>
-                                    <li>Creación de modelos estadísticos y probabilísticos para toma de decisiones (simulación Monte Carlo).</li>
-                                    <li>Análisis de datos incompletos o imperfectos.</li>
-                                    <li>Soporte analítico a equipos multifuncionales.</li>
-                                    <li>Análisis de Bases de Datos (Oracle Database) con SQL.</li>
-                                    <li>Detectar oportunidades y generar insights que permitan maximizar las ventas.</li>
-                                    <li>Reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas y resultados.</li>
-                                    <li>Análisis, control, seguimiento de costos u realizar análisis estadísticos para impulsar un proceso de decisión basado en insights cuantitativos.</li>
-
-                                </ul>
-
-                                
-
-                                <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Word | Power Point| Consultas SQL | Oracle Discoverer | Tiempo | RedLine 2000</li>
-                                </ul>
-                            </p>
-
-                            <p>
-                                <div class="subheading mb-3">2008-2010 </div>
-                            <span>Funciones:</span>
-                                <ul>
-                                    <li>Análisis de mercado Nacional y Local, relevamiento de precios, cantidades, logística.</li>
-                                    <li>Análisis de rendimiento por departamento y por productos / servicios.</li>
-                                    <li>Análisis de capacidad de pago de nuevos clientes de crédito.</li>
-                                    <li>Solución de problemas estratégicos y operativos, resolución de confictos, negociación</li>
-                                    <li>Mantener el orden en el cobro y pago de las facturas pendientes.</li>
-                                    <li>Fiscalizar la evolución de costos fijos, realizar estudio y establecer las causas de los desvíos.</li>
-                                    <li>Análisis financiero detallado de la empresa.</li>
-                                    <li>Confección de presupuestos.</li>
-                                    <li>Creación de planes de negocio para las distintas empresas del grupo empresario.</li>
-
-                                </ul>
-
-                                <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Word | Consultas SQL | Oracle Discoverer | Tiempo |  RedLine 2000</li>
-                                </ul>
-                            </p>
-
-
-                            <p>
-                                <div class="subheading mb-3">2007-2008 </div>
-                            <span>Funciones:</span>
-                                <ul>
-                                    <li>Detectar oportunidades de mejora o nuevas soluciones.</li>
-                                    <li>Colaborar en el análisis funcional y orgánico de los procedimientos operacionales.</li>
-                                    <li>Elaborar la presentación del FODA al equipo gerencial de la compañía.</li>
-                                    <li>Análisis financieros y de procedimientos, crear el FODA de la compañía.</li>
-                                    <li>Cálculo de costos financieros, costos por kilómetros sector logística, costos fijos, amortizaciones reales, etc.</li>
-                                    <li>Análisis de tendencias de los productos más vendidos, costos de logística, costo de inventarios.</li>
-                                    <li>Supervisor equipo logística corta y media distancia (25 personas).</li>
-                                    <li>Supervisor de cobranzas ventas minoristas (5 personas).</li>
-                                    <li>Cálculo de horas extras.</li>
-                                    <li>Gestión de equipos.</li>
-                                    <li>Logística de supercongelados.</li>
-                                    <li>Gestión de cartera de grandes clientes.</li>
-                                    <li>Desarrollo e implementación de las estrategias y planes de marketing.</li>
-                                    <li>Verificar el cumplimiento de las normas de higiene y seguridad.</li>
-                                    <li>Negociación y resolución de conflictos con clientes y proveedores.</li>
-                                    <li>Gestión de los nuevos proyectos, puesta en marcha de nuevas unidades de negocio.</li>
-                                    <li>Atención de forma exhaustiva e individualizada a los clientes estratégicos de la empresa.</li>
-                                    <li>Realizar la tarea de Coaching con el equipo de logística de corta y media distancia a fin de enseñarles y guiarlos para que pueda cumplir con los lineamientos estratégicos de la empresa. Evaluar la actuación de los colaboradores y dar feedback.</li>
-                                    <li>Gestión de cuentas de grandes clientes.</li>
-
-                                </ul>
-
-                                <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Word | Consultas SQL | Oracle Discoverer | RedLine 2000</li>
-                                </ul>
-                            </p>
-
-
-                            <p>
-                                <div class="subheading mb-3">2006-2007 </div>
-                            <span>Funciones:</span>
-                                <ul>
-                                    <li>Proveer asistencia a la Gerencia General para realizar mejoras en la empresa que permitan aumentar el rendimiento del personal y la rentabilidad de la empresa.</li>
-                                    <li>Elaborar plan de trabajo a seguir para realizar las mejoras y explotar las fortalezas y oportunidades de la empresa dentro del mercado local.</li>
-                                    <li>Detectar oportunidades en la logística de corta y media distancia con el objetivo mejorar la eficiencia de las rutas.</li>
-                                    <li>Análisis de la competencia.</li>
-                                    <li>Análisis de procesos y procedimientos de la operación de la empresa y de los procesos administrativos.</li>
-                                    <li>Cálculo del costo del kilómetro para logística de corta y larga distancia de vehículos con cargas refrigeradas.</li>
-                                    <li>Control de documentación de exportación de cargas internacionales.</li>
-                                    <li>Supervisor equipo de empaque (7 personas).</li>
-                                    <li>Análisis predictivo.</li>
-                                    <li>Trabajar en conjunto con los responsables de distintas áreas.</li>
-                                    <li>Análisis de costo-beneficio.</li>
-                                    <li>Control de compras de insumos varios.</li>
-                                    <li>Proveer asistencia a la Gerencia General para realizar mejoras en la empresa que permitan aumentar el rendimiento del personal y la rentabilidad de la empresa.</li>
-                                    <li>Detectar oportunidades de mejora o nuevas soluciones.</li>
-                                    <li>Colaborar en el análisis funcional y orgánico de los procedimientos operacionales</li>
-                                    <li>Elaborar la presentación del FODA al equipo gerencial de la compañía.</li>
-                                    <li>Elaborar el plan de trabajo a seguir para realizar las mejoras y explotar las fortalezas y oportunidades de la empresa dentro del mercado local.</li>
-                                    <li>Detectar oportunidades en la logística de corta-media distancia con el objetivo mejorar la eficiencia de las rutas.</li>
-                                    <li>Análisis de procesos y procedimientos de la operación de la firma y de los procesos administrativos.</li>
-                                    <li>Cálculo del costo del kilómetro para logística de corta y larga distancia de vehículos con cargas refrigeradas.</li>
-                                    <li>Control de documentación de exportación de cargas internacionales.</li>
-                                    <li>Supervisor equipo de empaque (7 personas).</li>
-                                    <li>Trabajar en conjunto con los responsables de distintas áreas.</li>
-                                    <li>Control de compras de insumos varios.</li>
-
-                                </ul>
-
-                               
-
-                                <span> Sotware:</span><br>
-                                <ul> 
-                                    <li>Excel | Word | Consultas SQL | Oracle Discoverer | RedLine 2000</li>
-                                </ul>
-                            </p>
-                        </div>
-
-                        <div class="flex-shrink-0"><span class="text-primary">2006 - 2018</span></div>
-                    </div>
-
-            <hr class="m-0" />
-            <!-- Education-->
-            <section class="resume-section" id="education">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Educación</h2>
-
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Diplomado en Inteligencia de Datos</h3>
-                            <div class="subheading mb-3">Universidad Nacional de Cuyo | Mendoza</div>
-                        </div>
-                         <div class="flex-shrink-0"><span class="text-primary">2022 - 2023</span></div>
-                        </div>
-
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">DATA ANALYST</h3>
-                                <div class="subheading mb-3">Platzi</div>
+                    <article class="xp">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="mb-0">Analista de Datos | Business Intelligence</h3>
+                                <div class="subheading">Midas Consultores · Cliente: YPF S.A.</div>
                             </div>
-                            <div class="flex-shrink-0"><span class="text-primary">2022 - 2023</span></div>
+                            <div class="xp-date">may 2023 – actualidad<span>Mendoza, Argentina</span></div>
+                        </header>
+                        <p class="xp-about">Análisis de datos para el monitoreo de la infraestructura de TI de YPF S.A. a nivel nacional (excepto AMBA). El detalle de los procesos y sus cifras está alcanzado por un acuerdo de confidencialidad.</p>
+                        <ul>
+                            <li><strong>Procesos ETL en Python.</strong> Desarrollo y mantenimiento de procesos que extraen, validan, transforman y cargan información con Pandas, NumPy y SQLAlchemy/pyodbc sobre SQL Server. Los registros válidos se separan de los rechazados, con el motivo de cada rechazo, y la configuración vive en archivos JSON para ejecutar en ambientes de prueba y de producción.</li>
+                            <li><strong>Tableros en Power BI.</strong> Relevamiento de requerimientos con los usuarios, modelado de datos, transformaciones en Power Query (lenguaje M), medidas en DAX y publicación en Power BI Service, con KPIs, alertas de incidentes y seguimiento de SLAs.</li>
+                            <li><strong>Indicadores de servicio regional de TI.</strong> Construcción de KPIs a partir de los tickets de ServiceNow y generación de reportes separados por región.</li>
+                            <li><strong>Automatización.</strong> Flujos en Power Automate Cloud integrados con SharePoint, OneDrive y Outlook, tareas programadas de Windows y scripts de PowerShell y BAT. Automatización de los informes de mantenimiento preventivo, correctivo y de servicios bajo demanda de las cuatro torres de servicio: Infraestructura, Comunicaciones, Soporte a Usuarios y Gestión de Activos.</li>
+                            <li><strong>Calidad de datos y trazabilidad.</strong> Controles y conciliaciones antes de distribuir resultados, logs con métricas de ejecución y excepciones, y conservación de evidencias para auditoría.</li>
+                            <li><strong>Documentación.</strong> Reglas de negocio, dependencias, cambios y procedimientos de cada proceso, para que otra persona pueda continuarlo.</li>
+                        </ul>
+                        <p class="tools"><strong>Herramientas:</strong> Python (Pandas, NumPy, SQLAlchemy, pyodbc) | SQL Server | Power BI (Power Query, M, DAX) | Power Automate | SharePoint | ServiceNow | Excel | Jupyter Notebook | Visual Studio Code | PowerShell | Selenium</p>
+                    </article>
+
+                    <article class="xp">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="mb-0">Consultor Freelance</h3>
+                                <div class="subheading">Análisis de datos · Trabajo independiente</div>
                             </div>
+                            <div class="xp-date">mar 2023 – abr 2023<span>Mendoza, Argentina</span></div>
+                        </header>
+                        <ul>
+                            <li>Recopilación de datos de bases de datos, sitios web y encuestas; limpieza y análisis con Excel, Python, R y SQL para identificar patrones, tendencias y relaciones.</li>
+                            <li>Visualizaciones y cuadros de mando de Business Intelligence en Tableau y Power BI, con KPIs y métricas para medir el negocio.</li>
+                            <li>Informes de gestión, rentabilidad, ventas y costos, con recomendaciones presentadas a los gerentes generales de cada firma.</li>
+                        </ul>
+                    </article>
 
-                            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Diplomado en Mercado de Capitales</h3>
-                                    <div class="subheading mb-3">Universidad Nacional de Cuyo | Mendoza</div>
+                    <article class="xp">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="mb-0">Formación intensiva en datos</h3>
+                                <div class="subheading">Dedicación completa · UNCuyo y Platzi</div>
+                            </div>
+                            <div class="xp-date">may 2022 – feb 2023</div>
+                        </header>
+                        <p class="xp-about">Diez meses dedicados por completo a la reconversión hacia el análisis de datos: Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones (UNCuyo, Facultad de Ciencias Económicas) y las rutas Data Analyst, Fundamentos de Data, Data Scientist con Python, Data e Inteligencia Artificial y Análisis de Datos con Python de Platzi.</p>
+                    </article>
+
+                    <article class="xp">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="mb-0">Wiber Soluciones en Conectividad</h3>
+                                <div class="subheading">Tecnet Argentina S.A. · Telecomunicaciones</div>
+                            </div>
+                            <div class="xp-date">mar 2019 – abr 2022<span>3 años y 2 meses</span></div>
+                        </header>
+                        <p class="xp-about">Proveedor de servicios de internet (ISP) con conexiones a medida por fibra óptica o wireless para clientes residenciales, pymes y empresas corporativas.</p>
+
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Administración y finanzas | Controller | Data Analyst</h4>
+                                <div class="role-date">mar 2020 – abr 2022 <span>· Luján de Cuyo, Mendoza</span></div>
+                            </div>
+                            <ul>
+                                <li>Creación de dashboards, reportes de gestión e informes de rentabilidad, ventas y costos, y control de los KPI de gestión.</li>
+                                <li>Nexo entre los desarrolladores del software de gestión y la empresa: relevamiento de requerimientos y seguimiento de la implementación.</li>
+                                <li>Implementación de la cobranza por medios digitales y digitalización de la documentación contable.</li>
+                            </ul>
+                            <details class="more">
+                                <summary>Funciones, logros y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Coordinar los procesos administrativo financieros con el objetivo de asegurar la provisión de información de gestión para la toma de decisiones, la disponibilidad de recursos financieros, materiales y servicios requeridos para el funcionamiento de la empresa.</li>
+                                        <li>Vínculo entre los desarrolladores del software de gestión y la empresa: relevamiento de requerimientos, control y seguimiento de la implementación del software.</li>
+                                        <li>Extracción y consulta de la base de datos para obtener información clave sobre la empresa.</li>
+                                        <li>Recopilación e interpretación de datos.</li>
+                                        <li>Control de indicadores claves de gestión para descubrir oportunidades de mejora en la ejecución de las diferentes acciones.</li>
+                                        <li>Determinar y controlar KPI de gestión para la mejora continua en la toma de decisiones.</li>
+                                        <li>Pago a proveedores.</li>
+                                        <li>Metodología ágil (Scrum) y OKRs.</li>
+                                        <li>Creación de dashboards, reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas, costos y resultados.</li>
+                                    </ul>
+                                    <p class="label">Logros</p>
+                                    <ul>
+                                        <li>Responder de forma adecuada en tiempos de pandemia, debido al crecimiento exponencial de la firma, por ser empresa proveedora de servicios de internet y el aumento de trabajos remotos.</li>
+                                        <li>Colaborar en la implementación del nuevo software de gestión.</li>
+                                        <li>Aumentar los controles de indicadores claves.</li>
+                                        <li>Implementación de cobranza por medios digitales: CBU, Visa, Mastercard, MercadoPago, PagoMisCuentas, Naranja, etc.</li>
+                                        <li>Digitalización de documentación contable.</li>
+                                        <li>Cerrar carpetas de trámites de ANR otorgados a la firma.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Power BI | Tableau | Google Sheets | Google Docs | Trello | Anatod | Freshchat</p>
                                 </div>
-                                <div class="flex-shrink-0"><span class="text-primary">2021 - 2022</span></div>
+                            </details>
+                        </div>
+
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Jefe de finanzas y administración</h4>
+                                <div class="role-date">mar 2019 – feb 2020</div>
+                            </div>
+                            <ul>
+                                <li>Obtención, procesamiento y análisis de datos de diversas fuentes (ETL), y creación de cuadros de mando de Business Intelligence y reportes para el CEO.</li>
+                                <li>Implementación del scoring de clientes vía Equifax (Veraz), con disminución de la incobrabilidad y la morosidad.</li>
+                                <li>Implementación del control de stock y del control de la flota de vehículos.</li>
+                            </ul>
+                            <details class="more">
+                                <summary>Funciones, logros y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Planificación y direccionamiento estratégico en conjunto con el CEO de la firma para el cumplimiento de las metas propuestas.</li>
+                                        <li>Obtener, procesar y analizar datos provenientes de diversas fuentes (ETL) para su posterior análisis.</li>
+                                        <li>Asegurar la entrega de reportes al CEO y la utilización de los indicadores y tableros de control para determinar la evolución del negocio.</li>
+                                        <li>Crear y mantener cuadros de mando de Business Intelligence.</li>
+                                        <li>Nexo entre estudio contable y la empresa para la presentación de IIBB, IVA, Balances Anuales y otras obligaciones fiscales.</li>
+                                        <li>Monitorear pagos recibidos de grandes clientes y conciliaciones de cuentas.</li>
+                                        <li>Análisis y cálculo de horas extras del personal.</li>
+                                        <li>Conciliaciones bancarias y Fiserv.</li>
+                                        <li>Negociaciones en alianzas estratégicas.</li>
+                                        <li>Licitaciones.</li>
+                                        <li>Resolución de conflictos con clientes.</li>
+                                        <li>Creación de nuevas unidades de negocios.</li>
+                                        <li>Creación de KPI y de métricas para medir el negocio.</li>
+                                        <li>Auditorías contables, atención al cliente y operaciones.</li>
+                                        <li>Control de cobranzas y morosidad.</li>
+                                        <li>Análisis de los estados financieros.</li>
+                                        <li>Utilizar datos para descubrir tareas que se pueden automatizar.</li>
+                                        <li>Localizar y definir nuevas oportunidades de mejora de procesos.</li>
+                                        <li>Gestiones ante el Ente Nacional de Comunicaciones (ENACOM).</li>
+                                    </ul>
+                                    <p class="label">Logros</p>
+                                    <ul>
+                                        <li>Estrategia comercial, gestión y planificación para comenzar la expansión masiva de fibra óptica mediante convenio de alquiler de postes con empresa distribuidora de energía de la provincia.</li>
+                                        <li>Implementación del control de stock y control de flota de vehículos.</li>
+                                        <li>Cálculo del costo de instalaciones.</li>
+                                        <li>Disminuir las tardanzas en forma significativa.</li>
+                                        <li>Mejorar los procesos de reclutamiento y selección.</li>
+                                        <li>Cumplimentar normas de higiene y seguridad.</li>
+                                        <li>Control de las cuentas de grandes clientes.</li>
+                                        <li>Implementación de scoring de clientes vía Equifax (Veraz) y disminución de la incobrabilidad y la morosidad.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Google Sheets | Google Docs | Trello</p>
                                 </div>
+                            </details>
+                        </div>
+                    </article>
 
+                    <article class="xp">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="mb-0">Consultor Independiente</h3>
+                                <div class="subheading">Consultoría de gestión y datos para pymes</div>
+                            </div>
+                            <div class="xp-date">sep 2017 – feb 2019<span>Mendoza, Argentina</span></div>
+                        </header>
+                        <ul>
+                            <li>Estructuración de flujos ETL para extraer, transformar y cargar datos, e implementación de dashboards de KPI en pymes.</li>
+                            <li>Reportes de gestión, informes de rentabilidad y análisis de ventas, costos y resultados para los gerentes generales de cada firma.</li>
+                            <li>Gestión de un Aporte No Reembolsable (ANR) de USD 20.000 otorgado por el Gobierno de Mendoza.</li>
+                        </ul>
+                        <details class="more">
+                            <summary>Funciones, logros y software</summary>
+                            <div class="more-body">
+                                <p class="label">Funciones</p>
+                                <ul>
+                                        <li>Estructurar flujos ETL y su arquitectura. Extraer, transformar y cargar datos para analítica e interpretación de datos.</li>
+                                        <li>Reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas y resultados.</li>
+                                        <li>Análisis, control y seguimiento de los costos.</li>
+                                        <li>Direccionamiento estratégico en conjunto con los Gerentes Generales de las firmas para el cumplimiento de las metas propuestas.</li>
+                                        <li>Seguimiento y control de tareas.</li>
+                                        <li>Planificación estratégica.</li>
+                                        <li>Crear y mantener cuadros de mando de Business Intelligence.</li>
+                                        <li>Creación de KPI y de métricas para medir el negocio.</li>
+                                        <li>Consulta de la base de datos para obtener información clave sobre la empresa.</li>
+                                        <li>Trabajar junto a equipos dentro de la empresa o el equipo de gestión para establecer las necesidades de negocio.</li>
+                                        <li>Localizar y definir nuevas oportunidades de mejora de procesos.</li>
+                                        <li>Licitaciones.</li>
+                                        <li>Pedidos de Aportes No Reembolsables.</li>
+                                    </ul>
+                                <p class="label">Logros</p>
+                                <ul>
+                                        <li>Implementar el uso de dashboards de KPI en pymes.</li>
+                                        <li>Gestioné un Aporte No Reembolsable (ANR) de USD 20.000 del programa «Proyectos de Inversión con Potencial de Crecimiento», otorgado por el Gobierno de Mendoza.</li>
+                                        <li>Ayudé a empresas a mejorar su eficiencia y rentabilidad mediante el análisis y la optimización de sus procesos empresariales. Algunos de mis clientes han logrado aumentar sus ingresos en un 20% y reducir sus costos en un 15% gracias a mi asesoramiento.</li>
+                                        <li>He desarrollado y aplicado modelos de análisis de datos para ayudar a las empresas a tomar decisiones informadas. Estos modelos han permitido a mis clientes comprender mejor a sus clientes y el mercado, lo que les ha ayudado a tomar decisiones más acertadas y mejorar su rendimiento empresarial.</li>
+                                        <li>He logrado mejorar la eficiencia y rentabilidad de empresas a través de la aplicación de metodologías de análisis y optimización y la implementación de sistemas de control.</li>
+                                    </ul>
+                                <p class="tools"><strong>Software:</strong> Excel | PostgreSQL | Word | PowerPoint | Power BI | Tableau | Google Sheets | Google Docs | Trello | Microsoft Project | Canva</p>
+                            </div>
+                        </details>
+                    </article>
 
-                                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                    <div class="flex-grow-1">
-                                        <h3 class="mb-0">Del Presupuesto al Tablero de Control</h3>
-                                        <div class="subheading mb-3">IAE Business School| Bs As</div>
-                                    </div>
-                                    <div class="flex-shrink-0"><span class="text-primary">2019</span></div>
-                                    </div>
+                    <article class="xp">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="mb-0">José Micheli e Hijos S.R.L.</h3>
+                                <div class="subheading">Alimentos, logística y retail</div>
+                            </div>
+                            <div class="xp-date">mar 2006 – ago 2017<span>11 años y 6 meses · Maipú, Mendoza</span></div>
+                        </header>
+                        <p class="xp-about">Empresa comercializadora y distribuidora de alimentos en la provincia de Mendoza, con logística de corta, media y larga distancia, nacional e internacional.</p>
 
-
-                            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Master of Business Administration (MBA) </h3>
-                                    <h4 class="mb-0">con orientación en proyectos</h4>
-                                    <h5 class="mb-0">Calificación definitiva: 9,1</h5>
-                                    <div class="subheading mb-3">EUNCET Business School | centre adscit a: Universidad Politécnica de Catalunya</div>
-                                    <div class="subheading mb-3">BarcelonaTech | Barcelona</div>
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Adjunto al Gerente General</h4>
+                                <div class="role-date">mar 2013 – ago 2017</div>
+                            </div>
+                            <ul>
+                                <li>Informes de clientes estratégicos y de mercado, reportes de gestión y de rentabilidad, y análisis estadísticos de costos para decidir con base cuantitativa.</li>
+                                <li>Coordinación de los procesos administrativo-financieros y control de los indicadores de resultado y ejecución de la estrategia comercial.</li>
+                            </ul>
+                            <details class="more">
+                                <summary>Funciones y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Coordinar los procesos administrativo financieros con el objetivo de asegurar la provisión de información de gestión para la toma de decisiones, la disponibilidad de recursos financieros, materiales y servicios requeridos para el funcionamiento de la empresa.</li>
+                                        <li>Gestionar, conservar y examinar información generando informes de clientes estratégicos y del mercado, para la toma de decisiones tácticas, estratégicas y de marketing alineadas al objetivo de la organización y a la satisfacción del cliente.</li>
+                                        <li>Asistir en la implementación del plan de trabajo a seguir para el mejoramiento de la rentabilidad de la empresa.</li>
+                                        <li>Realizar control de las contraprestaciones que deben efectivizar los clientes por convenios definidos: precios, cantidades, calidades, pesos, fechas de vencimiento e informar los desvíos detectados.</li>
+                                        <li>Reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas y resultados.</li>
+                                        <li>Análisis, control y seguimiento de costos y análisis estadísticos para impulsar un proceso de decisión basado en insights cuantitativos.</li>
+                                        <li>Planificación estratégica ejecutando con eficacia lo planificado y entregando resultados de alta calidad en los plazos establecidos.</li>
+                                        <li>Negociar y garantizar la implementación de los acuerdos y dinámicas comerciales con los distintos clientes y proveedores estratégicos, de manera tal de lograr rendimiento y eficiencia en las acciones realizadas.</li>
+                                        <li>Garantizar la apropiada aplicación de la estrategia comercial en base al cumplimiento de las rutinas establecidas y el control de los indicadores de resultado y ejecución.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Word | PowerPoint | Power BI | Google Sheets | Google Docs | Bigsys | RedLine 2000</p>
                                 </div>
-                                <div class="flex-shrink-0"><span class="text-primary">2012 - 2014</span></div>
+                            </details>
+                        </div>
+
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Data Analyst</h4>
+                                <div class="role-date">mar 2010 – feb 2013</div>
+                            </div>
+                            <ul>
+                                <li>Análisis de bases de datos Oracle con SQL y construcción de dashboards en Excel para la toma de decisiones.</li>
+                                <li>Modelos estadísticos y probabilísticos (simulación Monte Carlo) y presentación de insights al Gerente General.</li>
+                            </ul>
+                            <details class="more">
+                                <summary>Funciones y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Construir dashboards en Excel fáciles de entender para tomar decisiones.</li>
+                                        <li>Presentar insights al Gerente General para tomar decisiones coherentes con la planificación estratégica.</li>
+                                        <li>Creación de modelos estadísticos y probabilísticos para toma de decisiones (simulación Monte Carlo).</li>
+                                        <li>Análisis de datos incompletos o imperfectos.</li>
+                                        <li>Soporte analítico a equipos multifuncionales.</li>
+                                        <li>Análisis de bases de datos (Oracle Database) con SQL.</li>
+                                        <li>Detectar oportunidades y generar insights que permitan maximizar las ventas.</li>
+                                        <li>Reportes de gestión, informes de rentabilidad, indicadores económicos, informes financieros, análisis de ventas y resultados.</li>
+                                        <li>Análisis, control y seguimiento de costos y análisis estadísticos para impulsar un proceso de decisión basado en insights cuantitativos.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Word | PowerPoint | Consultas SQL | Oracle Discoverer | Tiempo | RedLine 2000</p>
                                 </div>
-                            
+                            </details>
+                        </div>
 
-                            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Máster Ejecutivo en Dirección de Empresas (EXECUTIVE MBA)</h3>
-                                    <h4 class="mb-0">con orientación en finanzas y control de gestión</h4>
-                                    <div class="subheading mb-3">Universidad Francisco de Vitoria | Madrid</div>
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Administración y finanzas</h4>
+                                <div class="role-date">mar 2008 – feb 2010</div>
+                            </div>
+                            <p class="mb-1">Análisis financiero y de costos, análisis de mercado y de tendencias de venta, presupuestos y planes de negocio para las empresas del grupo.</p>
+                            <details class="more">
+                                <summary>Funciones y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Detectar oportunidades de mejora o nuevas soluciones.</li>
+                                        <li>Colaborar en el análisis funcional y orgánico de los procedimientos operacionales.</li>
+                                        <li>Elaborar la presentación del FODA al equipo gerencial de la compañía.</li>
+                                        <li>Análisis financieros y de procedimientos, crear el FODA de la compañía.</li>
+                                        <li>Cálculo de costos financieros, costos por kilómetros sector logística, costos fijos, amortizaciones reales, etc.</li>
+                                        <li>Análisis de tendencias de los productos más vendidos, costos de logística, costo de inventarios.</li>
+                                        <li>Análisis de mercado nacional y local, relevamiento de precios, cantidades, logística.</li>
+                                        <li>Análisis de rendimiento por departamento y por productos / servicios.</li>
+                                        <li>Análisis de capacidad de pago de nuevos clientes de crédito.</li>
+                                        <li>Solución de problemas estratégicos y operativos, resolución de conflictos y negociación.</li>
+                                        <li>Mantener el orden en el cobro y pago de las facturas pendientes.</li>
+                                        <li>Fiscalizar la evolución de costos fijos, realizar estudio y establecer las causas de los desvíos.</li>
+                                        <li>Análisis financiero detallado de la empresa.</li>
+                                        <li>Confección de presupuestos.</li>
+                                        <li>Creación de planes de negocio para las distintas empresas del grupo empresario.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Word | Consultas SQL | Oracle Discoverer | Tiempo | RedLine 2000</p>
                                 </div>
-                                <div class="flex-shrink-0"><span class="text-primary">2012 - 2014</span></div>
+                            </details>
+                        </div>
+
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Comercialización y logística de corta y mediana distancia</h4>
+                                <div class="role-date">mar 2007 – feb 2008</div>
+                            </div>
+                            <p class="mb-1">Supervisión del equipo de logística (25 personas) y de cobranzas minoristas (5 personas), gestión de la cartera de grandes clientes y puesta en marcha de nuevas unidades de negocio.</p>
+                            <details class="more">
+                                <summary>Funciones y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Supervisor del equipo de logística de corta y media distancia (25 personas).</li>
+                                        <li>Supervisor de cobranzas de ventas minoristas (5 personas).</li>
+                                        <li>Cálculo de horas extras.</li>
+                                        <li>Gestión de equipos.</li>
+                                        <li>Logística de supercongelados.</li>
+                                        <li>Gestión de cartera de grandes clientes.</li>
+                                        <li>Desarrollo e implementación de las estrategias y planes de marketing.</li>
+                                        <li>Verificar el cumplimiento de las normas de higiene y seguridad.</li>
+                                        <li>Negociación y resolución de conflictos con clientes y proveedores.</li>
+                                        <li>Gestión de los nuevos proyectos, puesta en marcha de nuevas unidades de negocio.</li>
+                                        <li>Atención de forma exhaustiva e individualizada a los clientes estratégicos de la empresa.</li>
+                                        <li>Coaching al equipo de logística de corta y media distancia para guiarlo en el cumplimiento de los lineamientos estratégicos de la empresa. Evaluación del desempeño de los colaboradores y feedback.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Word | Consultas SQL | Oracle Discoverer | RedLine 2000</p>
                                 </div>
+                            </details>
+                        </div>
 
-                                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                    <div class="flex-grow-1">
-                                        <h3 class="mb-0">Specialization in Project Management</h3>
-                                        <h4 class="mb-0">McKenna School of Bussiness</h4>
-                                        <div class="subheading mb-3">Universidad en Pensilvania | Saint Vicnet College | Pensilvania</div>
-                                    </div>
-                                    <div class="flex-shrink-0"><span class="text-primary">2013</span></div>
-                                    </div>
-
-                                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                    <div class="flex-grow-1">
-                                        <h3 class="mb-0">Specialization in Finance</h3>
-                                        <h4 class="mb-0">McKenna School of Bussiness</h4>
-                                        <div class="subheading mb-3">Universidad en Pensilvania | Saint Vicnet College | Pensilvania</div>
-                                    </div>
-                                    <div class="flex-shrink-0"><span class="text-primary">2012</span></div>
-                                    </div>
-
-                                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                    <div class="flex-grow-1">
-                                        <h3 class="mb-0">Specialization in Management Skills</h3>
-                                        <h4 class="mb-0">School of Management</h4>
-                                        <div class="subheading mb-3">University of San Francisco | California</div>
-                                    </div>
-                                    <div class="flex-shrink-0"><span class="text-primary">2012</span></div>
-                                    </div>
-
-
-                            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Licenciado en Administración</h3>
-                                    <div class="subheading mb-3">promedio general 7,92</div>
-                                    <div class="subheading mb-3">Universidad Nacional de Cuyo | Mendoza</div>
+                        <div class="role">
+                            <div class="role-head">
+                                <h4 class="role-title">Consultor de gestión empresarial</h4>
+                                <div class="role-date">mar 2006 – feb 2007</div>
+                            </div>
+                            <p class="mb-1">Asistencia a la Gerencia General: análisis de procesos, costos logísticos y competencia, y plan de trabajo para mejorar el rendimiento y la rentabilidad.</p>
+                            <details class="more">
+                                <summary>Funciones y software</summary>
+                                <div class="more-body">
+                                    <p class="label">Funciones</p>
+                                    <ul>
+                                        <li>Proveer asistencia a la Gerencia General para realizar mejoras en la empresa que permitan aumentar el rendimiento del personal y la rentabilidad de la empresa.</li>
+                                        <li>Elaborar el plan de trabajo a seguir para realizar las mejoras y explotar las fortalezas y oportunidades de la empresa dentro del mercado local.</li>
+                                        <li>Detectar oportunidades en la logística de corta y media distancia con el objetivo de mejorar la eficiencia de las rutas.</li>
+                                        <li>Análisis de la competencia.</li>
+                                        <li>Análisis de procesos y procedimientos de la operación de la empresa y de los procesos administrativos.</li>
+                                        <li>Cálculo del costo del kilómetro para logística de corta y larga distancia de vehículos con cargas refrigeradas.</li>
+                                        <li>Control de documentación de exportación de cargas internacionales.</li>
+                                        <li>Supervisor del equipo de empaque (7 personas).</li>
+                                        <li>Análisis predictivo.</li>
+                                        <li>Trabajar en conjunto con los responsables de distintas áreas.</li>
+                                        <li>Análisis de costo-beneficio.</li>
+                                        <li>Control de compras de insumos varios.</li>
+                                        <li>Detectar oportunidades de mejora o nuevas soluciones.</li>
+                                        <li>Colaborar en el análisis funcional y orgánico de los procedimientos operacionales.</li>
+                                        <li>Elaborar la presentación del FODA al equipo gerencial de la compañía.</li>
+                                    </ul>
+                                    <p class="tools"><strong>Software:</strong> Excel | Word | Consultas SQL | Oracle Discoverer | RedLine 2000</p>
                                 </div>
-
-                                <div class="flex-shrink-0"><span class="text-primary">2000 - 2007</span></div>
-                                </div>
-
+                            </details>
+                        </div>
+                    </article>
 
                 </div>
             </section>
             <hr class="m-0" />
+
             <!-- Skills-->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <li class="list-inline-item-2"><spam><strong>PYTHON</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>EXCEL</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>POSGRESQL</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>TABLEAU</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>POWER BI</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>LOKER STUDIO</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>NUMPAY</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>PANDAS</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>MATPLOTLIB</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>SCIKIT-LEARN</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>SCIPY</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>NLTK</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>GIT</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>GITHUB</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>VSCODE</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>HTLM5</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>CSS3</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>JIRA</strong></spam>
-                    <li class="list-inline-item-2"><spam><strong>TRELLO</strong></spam>
-
-
-                    <!--
-
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-python"></i></li>
-                        <li class="list-inline-item"><i class="fas fa-file-excel"></i>
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-github"></i></li>
-                        <li class="list-inline-item"><i class="fas fa-database"></i></li>
-                    </ul>-->
-
+                    <div class="skill-grid">
+                        <div class="skill-group">
+                            <h3>Datos y programación</h3>
+                            <ul class="chips"><li>Python</li><li>Pandas</li><li>NumPy</li><li>SQL</li><li>SQLAlchemy</li><li>pyodbc</li><li>Matplotlib</li><li>Seaborn</li><li>Jupyter Notebook</li><li>JSON</li></ul>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Business Intelligence y visualización</h3>
+                            <ul class="chips"><li>Power BI Desktop</li><li>Power BI Service</li><li>Power Query (lenguaje M)</li><li>DAX</li><li>Modelado de datos</li><li>Tableau</li><li>Looker Studio</li><li>Excel avanzado</li></ul>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Automatización y Microsoft 365</h3>
+                            <ul class="chips"><li>Power Automate Cloud</li><li>SharePoint</li><li>OneDrive</li><li>Microsoft Lists</li><li>Outlook</li><li>Microsoft 365 Copilot</li><li>PowerShell</li><li>CMD y BAT</li><li>Programador de tareas de Windows</li><li>Selenium</li></ul>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Bases de datos</h3>
+                            <ul class="chips"><li>SQL Server</li><li>PostgreSQL</li><li>Oracle Database</li></ul>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Procesos y metodología</h3>
+                            <ul class="chips"><li>Procesos ETL</li><li>Calidad de datos</li><li>KPIs y tableros de control</li><li>Trazabilidad y auditoría</li><li>Documentación técnica y funcional</li><li>Scrum</li><li>OKRs</li></ul>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Plataformas y herramientas</h3>
+                            <ul class="chips"><li>ServiceNow</li><li>Visual Studio Code</li><li>Anaconda</li><li>Git</li><li>GitHub</li><li>Jira</li><li>Trello</li></ul>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Formación complementaria</h3>
+                            <p class="skill-note">Conocimientos adquiridos en cursos y trabajos académicos.</p>
+                            <ul class="chips"><li>scikit-learn</li><li>SciPy</li><li>NLTK</li><li>TensorFlow</li><li>Keras</li><li>R</li><li>FastAPI</li><li>HTML5</li><li>CSS3</li></ul>
+                        </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Interests-->
+
+            <!-- Projects-->
             <section class="resume-section" id="projects">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Proyectos</h2>
-                     <div class="subheading mb-3">TRABAJOS DE INVESTIGACIÓN</div><br><br>
-                        <ul class="fa-ul mb-0">
-                            
-                            <li><p><strong>Exploración de patrones y relaciones en un dataset de citas rápidas utilizando técnicas de ciencia de datos</strong> | Universidad Nacional de Cuyo | Facultad de Ciencias Económicas | Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones | Febrero 2023</p>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                <a href="assets/pdf/citas_rapidas.pdf">Informe formato pdf </a> 
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                <a href="https://github.com/horacio-gaido/speed-dating-experiment">Repositorio GitHub </a>
-                            </li> <br>
+                    <p class="section-intro">Trabajos de investigación con datos públicos. Los desarrollos que hago para YPF S.A. son confidenciales y no se publican.</p>
 
+                    <div class="project-grid">
+                        <article class="project">
+                            <h3>Exploración de patrones y relaciones en un dataset de citas rápidas utilizando técnicas de ciencia de datos</h3>
+                            <p class="project-meta">Trabajo final · Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones · UNCuyo, Facultad de Ciencias Económicas · Febrero 2023 · En coautoría con Laureano Lorenzo</p>
+                            <p>Análisis del experimento de citas rápidas de la Universidad de Columbia (552 participantes, 2002–2004). Incluye preprocesamiento, análisis exploratorio, detección de outliers, pruebas de hipótesis no paramétricas (Mann-Whitney U) y modelos de Gradient Boosting y regresión logística Lasso para identificar qué atributos pesan en la decisión de volver a verse.</p>
+                            <ul class="chips" aria-label="Tecnologías">
+                                <li>Python</li><li>SciPy</li><li>scikit-learn</li><li>Jupyter Notebook</li><li>Pruebas de hipótesis</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="assets/pdf/citas_rapidas.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf" aria-hidden="true"></i> Informe (PDF, 45 páginas)</a>
+                                <a href="https://github.com/horacio-gaido/speed-dating-experiment" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Repositorio en GitHub</a>
+                            </div>
+                        </article>
 
-                            <li>
-                                <p><strong>Las dimensiones de la calidad de vida </strong> | Universidad Nacional de Cuyo | Facultad de Ciencias Económicas | Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones | Noviembre 2022</p>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                <a href="assets/pdf/las_dimensiones_de_la_calidad_de_vida.pdf">Informe formato pdf </a> 
-                            </li>
+                        <article class="project">
+                            <h3>Las dimensiones de la calidad de vida</h3>
+                            <p class="project-meta">Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones · UNCuyo, Facultad de Ciencias Económicas · Noviembre 2022</p>
+                            <p>Análisis de 15.972 respuestas de una encuesta voluntaria sobre estilo de vida, hábitos y equilibrio entre el trabajo y la vida personal. Estadística descriptiva, distribuciones y mapas de correlación para identificar qué factores se asocian con una mejor calidad de vida.</p>
+                            <ul class="chips" aria-label="Tecnologías">
+                                <li>Jupyter Notebook</li><li>Análisis exploratorio</li><li>Correlaciones</li><li>Visualización</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="assets/pdf/las_dimensiones_de_la_calidad_de_vida.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf" aria-hidden="true"></i> Informe (PDF, 5 páginas)</a>
+                                <a href="https://github.com/horacio-gaido/dimensions_of_quality_of_life" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Repositorio en GitHub</a>
+                            </div>
+                        </article>
 
-                            <li>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                <a href="https://github.com/horacio-gaido/dimensions_of_quality_of_life">Repositorio GitHub </a>
-                            </li><br><br>
-
-                            <li>
-                                <p><strong>Informe financiero sobre CEDEAR de Berkshire Hathaway  </strong> | Diplomado en Mercado de Capitales | Universidad Nacional de Cuyo | Facultad de Ciencias Económicas | Diciembre 2021</p>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                <a href="assets/pdf/analisis_cedear_berkshire_hathaway.pdf">Informe formato pdf </a> 
-                            </li>
-                        </ul>
+                        <article class="project">
+                            <h3>Informe financiero sobre el CEDEAR de Berkshire Hathaway</h3>
+                            <p class="project-meta">Diplomado en Mercado de Capitales · UNCuyo, Facultad de Ciencias Económicas · Diciembre 2021</p>
+                            <p>Reporte de análisis de inversión del CEDEAR BRKB: contexto de mercado, análisis fundamental de la compañía y análisis técnico.</p>
+                            <ul class="chips" aria-label="Temas">
+                                <li>Análisis fundamental</li><li>Análisis técnico</li><li>Mercado de capitales</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="assets/pdf/analisis_cedear_berkshire_hathaway.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf" aria-hidden="true"></i> Informe (PDF, 15 páginas)</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
+
+            <!-- Education-->
+            <section class="resume-section" id="education">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Educación</h2>
+                    <div class="edu">
+                        <div>
+                            <h3>Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones</h3>
+                            <div class="where">Universidad Nacional de Cuyo · Facultad de Ciencias Económicas | Mendoza</div>
+                        </div>
+                        <div class="edu-date">mar 2022 – mar 2023</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Data Analyst</h3>
+                            <div class="where">Platzi</div>
+                        </div>
+                        <div class="edu-date">abr 2022 – ene 2023</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Diplomado en Mercado de Capitales</h3>
+                            <div class="where">Universidad Nacional de Cuyo · Facultad de Ciencias Económicas | Mendoza</div>
+                        </div>
+                        <div class="edu-date">2021 – 2022</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Del Presupuesto al Tablero de Control</h3>
+                            <div class="where">IAE Business School | Buenos Aires</div>
+                        </div>
+                        <div class="edu-date">ago 2019 – sep 2019</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Master of Business Administration (MBA)</h3>
+                            <div class="extra">Orientación en proyectos · Calificación definitiva: 9,1</div>
+                            <div class="where">EUNCET Business School · centro adscrito a la Universitat Politècnica de Catalunya (BarcelonaTech) | Barcelona</div>
+                        </div>
+                        <div class="edu-date">2012 – 2014</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Máster Ejecutivo en Dirección de Empresas (Executive MBA)</h3>
+                            <div class="extra">Orientación en finanzas y control de gestión</div>
+                            <div class="where">Universidad Francisco de Vitoria | Madrid</div>
+                        </div>
+                        <div class="edu-date">2012 – 2014</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Specialization in Project Management</h3>
+                            <div class="extra">McKenna School of Business</div>
+                            <div class="where">Saint Vincent College | Pensilvania, Estados Unidos</div>
+                        </div>
+                        <div class="edu-date">2013</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Specialization in Finance</h3>
+                            <div class="extra">McKenna School of Business</div>
+                            <div class="where">Saint Vincent College | Pensilvania, Estados Unidos</div>
+                        </div>
+                        <div class="edu-date">2012</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Specialization in Management Skills</h3>
+                            <div class="extra">School of Management</div>
+                            <div class="where">University of San Francisco | California, Estados Unidos</div>
+                        </div>
+                        <div class="edu-date">2012</div>
+                    </div>
+                    <div class="edu">
+                        <div>
+                            <h3>Licenciado en Administración</h3>
+                            <div class="extra">Promedio general: 7,92</div>
+                            <div class="where">Universidad Nacional de Cuyo | Mendoza</div>
+                        </div>
+                        <div class="edu-date">2000 – 2007</div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
             <!-- Awards-->
             <section class="resume-section" id="awards">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Certificaciones y Cursos</h2>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                        <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                            Curso de introducción a python para el análisis y visualización de datos financieros | Universidad Nacional de Cuyo | Facultad de Ciencias Económicas | Marzo 2022
-                        </li>
+                    <h2 class="mb-5">Certificaciones y cursos</h2>
+                    <p class="section-intro">Agrupados por tema. Los certificados de Platzi se pueden consultar en <a href="https://platzi.com/p/horaciogaido/" target="_blank" rel="noopener noreferrer">mi perfil público</a>.</p>
 
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Profesional de Scrum | Platzi | 2023</li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Estadística Inferencial para Data Science e Inteligencia Artificial| Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Profesional de Scrum | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Retención para Startups | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de FastAPI: Fundamentos, Path Operations y Validaciones| Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de FastAPI: Introducción, Operaciones, Validaciones y Autenticación | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Google Data Studio | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de PostgreSQL| Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Python: PIP y Entornos Virtuales | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Práctico de HTML y CSS| Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Nuevo Curso de Introducción al Desarrollo Backend | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Análisis de Datos con Power BI | Platzi | 2023  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Práctico de SQL| Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Análisis Exploratorio de Datos | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Excel Avanzado con Macros| Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Excel Avanzado para Análisis de Datos | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Excel Básico| Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Excel Intermedio: Análisis de Información y Creación de Dashboards | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Funciones Matemáticas para Data Science e Inteligencia Artificial | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Instrumentación de Datos para Decisiones de Negocio | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Introducción a ExcelCurso de Introducción a Excel | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Lenguaje y Notación Matemática| Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Métricas para Medir el Crecimiento de tu Negocio Digital | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Métricas para Startups en Etapa Temprana | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Regresión Lineal con Python y scikit-learn | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Álgebra | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Fundamentos de Data | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Fundamentos de Python| Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de PostgreSQL Aplicado a Ciencia de Datos | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Definitivo de HTML y CSS | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Profesional de Git y GitHub | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Básico de Visualización de Datos con Matplotlib y Seaborn | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Fundamentos de R | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Introducción a Machine Learning por MindsDB | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Ética y Manejo de Datos para Data Science e Inteligencia Artificial | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Matemáticas para Data Science: Estadística Descriptiva | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Pensamiento Lógico: Algoritmos y Diagramas de Flujo | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Fundamentos de Matemáticas | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Python 2019Curso de Python 2019 | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Tableau: Visualización de Datos y Storytelling para Negocios | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Business Intelligence: Utilidad y Áreas de Oportunidad | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Entorno de Trabajo para Ciencia de Datos con Jupyter Notebooks y Anaconda | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Introducción a la Terminal y Línea de Comandos | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Programación Orientada a Objetos: POO | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Python Intermedio: Comprehensions, Lambdas y Manejo de Errores | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Fundamentos de Bases de Datos | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Básico de Algoritmos y Pensamiento Lógico | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Básico de Manipulación y Transformación de Datos con Pandas y NumPy | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso Básico de PythonCurso Básico de Python | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Análisis de Negocios para Ciencia de Datos | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Curso de Introducción al Pensamiento Computacional con Python | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Cómo y Por Qué Aprender Data Science e Inteligencia Artificial | Platzi | 2022  </li>
-                            <li> <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>  Coaching - Programa Conscious Business | Conscious Business Academy | 2018 </li>
+                    <!--
+                    RECONOCIMIENTO PENDIENTE DE COMPLETAR
+                    En LinkedIn figura el reconocimiento "Ganadores mejor proyecto". Para mostrarlo acá,
+                    completá el proyecto, la institución y el año, y sacá este bloque del comentario:
 
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Análisis fundamental de acciones | IOL Academy (Invertir On Line Academy) | 2021
-                            </li>
+                    <p><i class="fas fa-award" aria-hidden="true"></i> <strong>Ganadores al mejor proyecto</strong> · NOMBRE DEL PROYECTO · INSTITUCIÓN · AÑO</p>
+                    -->
 
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Dirección de Proyectos | ADEN Business School | 2013
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Dirección de Finanzas | ADEN Business School | Noviembre 2013
-                            </li>
-
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Professional Excecutive Coach | ADEN Business School | Agosto 2012
-                            </li>
-
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Professional Excecutive Coach | Association for Coaching | London | 2012
-                            </li>
-
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Programa de Desarrollo Gerencial | ADEN Business School | Diciembre 2012
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Programa de Habilidades Directivas | ADEN Business School | Agosto 2012
-                            </li>
-
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Workshop de Negociación y resolución de conflictos | ADEN Business School | 2012
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Equipos de trabajos de alto rendimiento | ADEN Business School | 2012
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Coaching Ejecutivo | ADEN Business School | 2012
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Liderazgo de Alto Desempeño | ADEN Business School | 2012
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Formulación y Evaluación de Proyectos | ADEN Business School | 2012
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>
-                                Project Management | ADEN Business School | 2012
-                            </li>
-
-                            <li>
-                                <span class="fa-li"><i class="fas fa-graduation-cap text-light"></i></span>Innovación en Gestión Estratégica de Proyectos | ADEN Business School | 2012
-                            </li>
-
-                    </ul>
+                    <details class="more cert-group" open>
+                        <summary>Análisis de datos, SQL y Business Intelligence <span class="count">(15)</span></summary>
+                        <ul class="cert-list">
+                            <li>Curso de Análisis de Datos con Power BI <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de PostgreSQL <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de Google Data Studio <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso Práctico de SQL <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de PostgreSQL Aplicado a Ciencia de Datos <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Fundamentos de Bases de Datos <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Análisis Exploratorio de Datos <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso Básico de Manipulación y Transformación de Datos con Pandas y NumPy <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso Básico de Visualización de Datos con Matplotlib y Seaborn <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Tableau: Visualización de Datos y Storytelling para Negocios <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Business Intelligence: Utilidad y Áreas de Oportunidad <span class="meta">· Platzi · 2022</span></li>
+                            <li>Fundamentos de Data <span class="meta">· Platzi · 2022</span></li>
+                            <li>Cómo y Por Qué Aprender Data Science e Inteligencia Artificial <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Ética y Manejo de Datos para Data Science e Inteligencia Artificial <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de introducción a Python para el análisis y visualización de datos financieros <span class="meta">· Universidad Nacional de Cuyo · Facultad de Ciencias Económicas · Marzo 2022</span></li>
+                        </ul>
+                    </details>
+                    <details class="more cert-group">
+                        <summary>Python y programación <span class="count">(13)</span></summary>
+                        <ul class="cert-list">
+                            <li>Curso de Python: PIP y Entornos Virtuales <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de Python Intermedio: Comprehensions, Lambdas y Manejo de Errores <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Programación Orientada a Objetos: POO <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Fundamentos de Python <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso Básico de Python <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Python 2019 <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Introducción al Pensamiento Computacional con Python <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso Básico de Algoritmos y Pensamiento Lógico <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Pensamiento Lógico: Algoritmos y Diagramas de Flujo <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Entorno de Trabajo para Ciencia de Datos con Jupyter Notebooks y Anaconda <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso Profesional de Git y GitHub <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Introducción a la Terminal y Línea de Comandos <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Fundamentos de R <span class="meta">· Platzi · 2022</span></li>
+                        </ul>
+                    </details>
+                    <details class="more cert-group">
+                        <summary>Excel <span class="count">(5)</span></summary>
+                        <ul class="cert-list">
+                            <li>Curso de Excel Avanzado con Macros <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Excel Avanzado para Análisis de Datos <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Excel Intermedio: Análisis de Información y Creación de Dashboards <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Excel Básico <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Introducción a Excel <span class="meta">· Platzi · 2022</span></li>
+                        </ul>
+                    </details>
+                    <details class="more cert-group">
+                        <summary>Matemática, estadística y machine learning <span class="count">(8)</span></summary>
+                        <ul class="cert-list">
+                            <li>Curso de Estadística Inferencial para Data Science e Inteligencia Artificial <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de Matemáticas para Data Science: Estadística Descriptiva <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Regresión Lineal con Python y scikit-learn <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Introducción a Machine Learning por MindsDB <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Funciones Matemáticas para Data Science e Inteligencia Artificial <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Álgebra <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Lenguaje y Notación Matemática <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Fundamentos de Matemáticas <span class="meta">· Platzi · 2022</span></li>
+                        </ul>
+                    </details>
+                    <details class="more cert-group">
+                        <summary>Negocio, métricas y metodologías ágiles <span class="count">(6)</span></summary>
+                        <ul class="cert-list">
+                            <li>Curso Profesional de Scrum <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de Retención para Startups <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de Análisis de Negocios para Ciencia de Datos <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Instrumentación de Datos para Decisiones de Negocio <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Métricas para Medir el Crecimiento de tu Negocio Digital <span class="meta">· Platzi · 2022</span></li>
+                            <li>Curso de Métricas para Startups en Etapa Temprana <span class="meta">· Platzi · 2022</span></li>
+                        </ul>
+                    </details>
+                    <details class="more cert-group">
+                        <summary>Desarrollo web y backend <span class="count">(5)</span></summary>
+                        <ul class="cert-list">
+                            <li>Curso de FastAPI: Fundamentos, Path Operations y Validaciones <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso de FastAPI: Introducción, Operaciones, Validaciones y Autenticación <span class="meta">· Platzi · 2023</span></li>
+                            <li>Nuevo Curso de Introducción al Desarrollo Backend <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso Práctico de HTML y CSS <span class="meta">· Platzi · 2023</span></li>
+                            <li>Curso Definitivo de HTML y CSS <span class="meta">· Platzi · 2022</span></li>
+                        </ul>
+                    </details>
+                    <details class="more cert-group">
+                        <summary>Gestión, proyectos, finanzas y coaching <span class="count">(15)</span></summary>
+                        <ul class="cert-list">
+                            <li>Análisis fundamental de acciones <span class="meta">· IOL Academy (Invertir Online Academy) · 2021</span></li>
+                            <li>Coaching – Programa Conscious Business <span class="meta">· Conscious Business Academy · 2018</span></li>
+                            <li>Dirección de Finanzas <span class="meta">· ADEN Business School · Noviembre 2013</span></li>
+                            <li>Dirección de Proyectos <span class="meta">· ADEN Business School · 2013</span></li>
+                            <li>Programa de Desarrollo Gerencial <span class="meta">· ADEN Business School · Diciembre 2012</span></li>
+                            <li>Professional Executive Coach <span class="meta">· ADEN Business School · Agosto 2012</span></li>
+                            <li>Professional Executive Coach <span class="meta">· Association for Coaching · Londres · 2012</span></li>
+                            <li>Programa de Habilidades Directivas <span class="meta">· ADEN Business School · Agosto 2012</span></li>
+                            <li>Workshop de Negociación y Resolución de Conflictos <span class="meta">· ADEN Business School · 2012</span></li>
+                            <li>Equipos de trabajo de alto rendimiento <span class="meta">· ADEN Business School · 2012</span></li>
+                            <li>Coaching Ejecutivo <span class="meta">· ADEN Business School · 2012</span></li>
+                            <li>Liderazgo de Alto Desempeño <span class="meta">· ADEN Business School · 2012</span></li>
+                            <li>Formulación y Evaluación de Proyectos <span class="meta">· ADEN Business School · 2012</span></li>
+                            <li>Project Management <span class="meta">· ADEN Business School · 2012</span></li>
+                            <li>Innovación en Gestión Estratégica de Proyectos <span class="meta">· ADEN Business School · 2012</span></li>
+                        </ul>
+                    </details>
+                    <p class="print-note">Versión resumida. El detalle de funciones por puesto y la lista completa de cursos están en horacio-gaido.github.io</p>
                 </div>
             </section>
-        </div>
+        </main>
+
+        <footer class="site-footer">
+            © 2026 Horacio Gaido · Última actualización: octubre de 2026
+        </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+            // "Guardar como PDF": abre el diálogo de impresión del navegador con la versión resumida
+            (function () {
+                var btn = document.getElementById('printCv');
+                if (btn) { btn.addEventListener('click', function () { window.print(); }); }
+            })();
+        </script>
     </body>
+
 </html>
