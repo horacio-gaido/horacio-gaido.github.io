@@ -3,12 +3,15 @@
 
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Horacio Gaido | Analista de Datos · Business Intelligence · Automatización</title>
         <meta name="description" content="Horacio Gaido, analista de datos y Business Intelligence en Mendoza, Argentina. ETL con Python y SQL Server, tableros en Power BI y automatización de procesos con Power Automate." />
         <meta name="author" content="Horacio Gaido" />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href="https://horacio-gaido.github.io/" />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#151A21" media="(prefers-color-scheme: dark)" />
 
         <!-- Vista previa al compartir el link (LinkedIn, WhatsApp, etc.) -->
         <meta property="og:type" content="profile" />
@@ -20,203 +23,330 @@
         <meta property="og:image" content="https://horacio-gaido.github.io/images/horacio_gaido.jpeg" />
         <meta property="og:image:alt" content="Foto de Horacio Gaido" />
         <meta name="twitter:card" content="summary" />
-        <meta name="theme-color" content="#ad5030" />
 
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
+        <!-- Aplica el tema guardado antes de pintar la página, para que no parpadee -->
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem('theme');
+                    if (t === 'light' || t === 'dark') { document.documentElement.setAttribute('data-theme', t); }
+                } catch (e) {}
+            })();
+        </script>
+
+        <!-- Tipografía: Archivo (Omnibus-Type, Buenos Aires), una sola familia en dos anchos -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700&amp;display=swap" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i&amp;display=swap" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet" />
 
-        <!-- Ajustes propios sobre la plantilla: contraste, bloques nuevos e impresión -->
+        <!--
+            Todo el diseño está en este archivo: no usa Bootstrap, Font Awesome ni css/styles.css.
+            Para cambiar el color de acento, editá --accent y --accent-weak en los dos bloques de tema.
+        -->
         <style>
+            /* ---------- Tokens ---------- */
             :root {
-                --ink: #d2d6db;
-                --ink-soft: #a9b0b8;
-                --accent-text: #ea8a63;
-                --surface: #2b2b2b;
-                --line: #3d3d3d;
+                --bg: #F6F7F9;
+                --panel: #FFFFFF;
+                --ink: #18212D;
+                --ink-2: #4D5967;
+                --line: #D5DAE1;
+                --accent: #7B1E3F;
+                --accent-weak: #E3C3CE;
+                --gutter: 15rem;
+                --measure: 50rem;
+                --header-h: 3.75rem;
+                --font: "Archivo", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             }
-            html { scroll-behavior: smooth; }
-            body { color: var(--ink); }
-            section[id] { scroll-margin-top: 4rem; }
-            @media (min-width: 992px) { section[id] { scroll-margin-top: 0; } }
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    --bg: #151A21;
+                    --panel: #1C232D;
+                    --ink: #E7EAEE;
+                    --ink-2: #A6B0BC;
+                    --line: #313B48;
+                    --accent: #F0A3B9;
+                    --accent-weak: #6A3447;
+                }
+            }
+            :root[data-theme="dark"] {
+                --bg: #151A21;
+                --panel: #1C232D;
+                --ink: #E7EAEE;
+                --ink-2: #A6B0BC;
+                --line: #313B48;
+                --accent: #F0A3B9;
+                --accent-weak: #6A3447;
+            }
 
-            /* Contraste */
-            #sideNav { background-color: #ad5030 !important; }
-            #sideNav .navbar-nav .nav-item .nav-link { color: rgba(255, 255, 255, 0.85); }
-            #sideNav .navbar-nav .nav-item .nav-link:hover,
-            #sideNav .navbar-nav .nav-item .nav-link.active { color: #fff; }
-            .resume-section a { color: var(--accent-text); }
-            .resume-section a:hover { color: #f3ab8d; text-decoration: underline; }
-            .resume-section .social-icons .social-icon,
-            .resume-section .social-icons .social-icon:hover { color: #fff; text-decoration: none; }
-            a:focus-visible, summary:focus-visible, button:focus-visible {
-                outline: 2px solid #fff; outline-offset: 3px; border-radius: 2px;
+            /* ---------- Base ---------- */
+            *, *::before, *::after { box-sizing: border-box; }
+            html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--ink);
+                font-family: var(--font);
+                font-size: 1.0625rem;
+                line-height: 1.6;
+                font-variant-numeric: tabular-nums;
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
             }
+            h1, h2, h3, h4, p, ul { margin: 0; }
+            img { max-width: 100%; height: auto; display: block; }
+            a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+            a:hover { text-decoration-thickness: 2px; }
+            :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+            .ico { width: 1em; height: 1em; fill: currentColor; flex-shrink: 0; }
+            .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
             .skip-link {
-                position: absolute; left: -999px; top: 0; z-index: 2000;
-                background: #fff; color: #222; padding: 0.6rem 1rem; font-weight: 800;
+                position: absolute; left: -999px; top: 0; z-index: 100;
+                background: var(--ink); color: var(--bg); padding: 0.6rem 1rem; font-weight: 700;
             }
             .skip-link:focus { left: 0; }
+            .contact-print, .print-note { display: none; }
 
-            /* Secciones: sin el alto de pantalla completa de la plantilla */
-            section.resume-section:not(#about) { min-height: 0; padding-top: 4rem; padding-bottom: 4rem; }
-            .resume-section h2 { color: #fff; }
-            .resume-section h3 { color: #fff; font-size: 1.75rem; line-height: 1.15; }
-            .section-intro { color: var(--ink-soft); max-width: 46rem; margin-top: -1.5rem; margin-bottom: 2.5rem; }
-
-            /* Sobre mí */
-            .about-photo { width: 6.5rem; height: 6.5rem; object-fit: cover; border: 0.3rem solid rgba(255, 255, 255, 0.2); }
-            .headline { color: var(--accent-text); font-size: 1.3rem; line-height: 1.25; margin-bottom: 0.4rem; }
-            @media (min-width: 768px) { .headline { font-size: 1.6rem; } }
-            .about-text p { font-size: 1.15rem; max-width: 46rem; margin-bottom: 1rem; }
-            .about-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
-            .about-actions .social-icons .social-icon { margin-right: 0.9rem; }
-            .btn-outline-accent {
-                display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem;
-                padding: 0.5rem 1.1rem; border: 1px solid var(--accent-text); border-radius: 0.4rem;
-                background: transparent; color: var(--accent-text); font-weight: 800; font-family: inherit; font-size: 1rem;
+            /* ---------- Encabezado fijo ---------- */
+            .site-header {
+                position: sticky; top: 0; z-index: 50;
+                background: color-mix(in srgb, var(--bg) 88%, transparent);
+                -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--line);
             }
-            .btn-outline-accent:hover { background: #ad5030; border-color: #ad5030; color: #fff; }
+            .site-header-inner {
+                max-width: 76rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem);
+                display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem;
+            }
+            .brand {
+                font-weight: 800; font-stretch: 85%; font-size: 1.15rem; letter-spacing: -0.01em;
+                color: var(--ink); text-decoration: none; padding: 0.9rem 0;
+            }
+            .theme-toggle {
+                grid-column: 2; grid-row: 1;
+                display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem;
+                border: 0; border-radius: 6px; background: transparent; color: var(--ink-2); cursor: pointer;
+            }
+            .theme-toggle:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 8%, transparent); }
+            .theme-toggle .ico { width: 1.15rem; height: 1.15rem; }
+            .theme-toggle .moon { display: none; }
+            :root[data-theme="dark"] .theme-toggle .sun { display: none; }
+            :root[data-theme="dark"] .theme-toggle .moon { display: block; }
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+                :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
+            }
+            .site-nav { grid-column: 1 / -1; grid-row: 2; margin: 0 calc(-1 * clamp(1.25rem, 4vw, 3rem)); overflow-x: auto; scrollbar-width: none; }
+            .site-nav::-webkit-scrollbar { display: none; }
+            .site-nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0 clamp(0.6rem, 3vw, 2.4rem) 0.35rem; width: max-content; }
+            .site-nav a {
+                display: block; padding: 0.55rem 0.65rem; border-radius: 6px;
+                color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap;
+            }
+            .site-nav a:hover { color: var(--ink); }
+            .site-nav a[aria-current="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); border-radius: 0; }
+            @media (min-width: 60rem) {
+                .site-header-inner { grid-template-columns: auto 1fr auto; column-gap: 2rem; min-height: var(--header-h); }
+                .site-nav { grid-column: 2; grid-row: 1; margin: 0; justify-self: end; overflow: visible; }
+                .site-nav ul { padding: 0; }
+                .theme-toggle { grid-column: 3; }
+            }
 
-            /* Experiencia */
-            .xp { margin-bottom: 3.5rem; }
+            /* ---------- Estructura de secciones: título en el margen, contenido a la derecha ---------- */
+            main { max-width: 76rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+            .section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+            .section.hero { border-top: 0; padding-top: clamp(2.5rem, 7vw, 5rem); }
+            .section > .content { min-width: 0; }
+            .gutter h2 {
+                font-size: clamp(1.9rem, 5vw, 2.25rem); font-weight: 750; font-stretch: 80%;
+                line-height: 1.05; letter-spacing: -0.015em; margin-bottom: 1.75rem;
+            }
+            @media (min-width: 60rem) {
+                .section { display: grid; grid-template-columns: var(--gutter) minmax(0, var(--measure)); column-gap: 3.5rem; padding: 4.5rem 0; }
+                .gutter h2 { position: sticky; top: calc(var(--header-h) + 1.5rem); margin-bottom: 0; font-size: 1.7rem; overflow-wrap: anywhere; }
+            }
+            .section-intro { color: var(--ink-2); margin-bottom: 2rem; max-width: 42rem; }
+
+            /* ---------- Sobre mí ---------- */
+            .portrait { width: 7.5rem; aspect-ratio: 1196 / 1277; object-fit: cover; border-radius: 6px; margin-bottom: 1.75rem; }
+            @media (min-width: 60rem) { .portrait { width: 100%; margin-bottom: 0; } }
+            h1 {
+                font-size: clamp(3.25rem, 11vw, 6rem); font-weight: 800; font-stretch: 72%;
+                line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 1.1rem;
+            }
+            .headline { font-size: clamp(1.15rem, 2.6vw, 1.4rem); font-weight: 600; font-stretch: 90%; line-height: 1.3; }
+            .subheading.contact { color: var(--ink-2); margin: 0.35rem 0 2.25rem; }
+            .about-text p { max-width: 42rem; margin-bottom: 1.05rem; }
+            .about-text p:first-child { font-size: 1.2rem; line-height: 1.5; }
+            .about-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 2rem; }
+            .social-icons { display: flex; gap: 0.5rem; }
+            .social-icon, .btn-outline-accent {
+                display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+                min-width: 2.75rem; height: 2.75rem; border: 1px solid var(--line); border-radius: 6px;
+                background: var(--panel); color: var(--ink); text-decoration: none;
+            }
+            .social-icon .ico { width: 1.15rem; height: 1.15rem; }
+            .btn-outline-accent { padding: 0 1.1rem; font: inherit; font-weight: 650; font-size: 0.98rem; cursor: pointer; }
+            .social-icon:hover, .btn-outline-accent:hover { border-color: var(--accent); color: var(--accent); }
+
+            /* ---------- Experiencia ---------- */
+            /* Cada puesto lleva una barra que lo ubica en la misma escala de tiempo, de 2006 a 2026 */
+            .axis { position: relative; height: 1.35rem; margin-bottom: 0.15rem; color: var(--ink-2); font-size: 0.78rem; font-weight: 500; }
+            .axis span { position: absolute; top: 0; padding-left: 0.3rem; border-left: 1px solid var(--line); line-height: 1.35rem; }
+            .track {
+                position: relative; height: 0.5rem; margin-bottom: 1rem;
+                background:
+                    linear-gradient(var(--line), var(--line)) 19.05% 0 / 1px 100% no-repeat,
+                    linear-gradient(var(--line), var(--line)) 42.86% 0 / 1px 100% no-repeat,
+                    linear-gradient(var(--line), var(--line)) 66.67% 0 / 1px 100% no-repeat,
+                    linear-gradient(var(--line), var(--line)) 90.48% 0 / 1px 100% no-repeat,
+                    linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat;
+            }
+            .track i { position: absolute; top: 0; bottom: 1px; left: var(--s); width: var(--w); min-width: 6px; border-radius: 3px; }
+            .track .co { background: var(--accent-weak); }
+            .track .at { background: var(--accent); }
+            .xp { margin-bottom: 3.25rem; }
             .xp:last-child { margin-bottom: 0; }
-            .xp-head { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; }
-            @media (min-width: 768px) {
-                .xp-head { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+            .xp-head { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.9rem; }
+            .xp h3 { font-size: 1.4rem; font-weight: 750; font-stretch: 88%; line-height: 1.2; letter-spacing: -0.01em; }
+            .xp-head .subheading { color: var(--ink-2); font-weight: 500; }
+            .xp-date { font-weight: 650; font-size: 0.95rem; white-space: nowrap; }
+            .xp-date span { display: block; color: var(--ink-2); font-weight: 400; white-space: normal; }
+            @media (min-width: 44rem) {
+                .xp-head { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 2rem; }
                 .xp-date { text-align: right; flex-shrink: 0; }
             }
-            .xp-head .subheading { color: var(--ink-soft); font-size: 1.4rem; }
-            .xp-date { color: var(--accent-text); font-weight: 800; white-space: nowrap; }
-            .xp-date span { display: block; color: var(--ink-soft); font-weight: 400; white-space: normal; }
-            .xp-about { color: var(--ink-soft); max-width: 50rem; }
-            .xp ul { padding-left: 1.2rem; max-width: 52rem; }
-            .xp li { margin-bottom: 0.4rem; }
-            .xp li strong, .role-title, .tools strong, .label { color: #fff; }
-            .tools { margin: 0.75rem 0 0; max-width: 52rem; }
-            .role { border-left: 3px solid var(--line); padding-left: 1.1rem; margin-top: 1.6rem; }
-            .role-head { margin-bottom: 0.5rem; }
-            .role-title {
-                font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                font-size: 1.15rem; font-weight: 800; text-transform: none; margin: 0;
-            }
-            .role-date { color: var(--accent-text); font-weight: 800; font-size: 0.95rem; }
-            .role-date span { color: var(--ink-soft); font-weight: 400; }
-            .label { font-weight: 800; margin: 1rem 0 0.4rem; }
+            .xp-about { color: var(--ink-2); margin-bottom: 0.9rem; }
+            .xp ul { list-style: none; padding: 0; }
+            .xp li { position: relative; padding-left: 1.15rem; margin-bottom: 0.5rem; }
+            .xp li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.4rem; height: 1px; background: var(--ink-2); }
+            .xp li strong, .tools strong { font-weight: 700; }
+            .tools { margin-top: 0.9rem; font-size: 0.98rem; }
+            .role { margin-top: 2rem; }
+            .role-head { margin-bottom: 0.6rem; }
+            .role-title { font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+            .role-date { font-weight: 650; font-size: 0.92rem; }
+            .role-date span { color: var(--ink-2); font-weight: 400; }
+            .label { font-weight: 700; margin: 1.1rem 0 0.45rem; }
 
-            /* Desplegables */
-            details.more { margin-top: 0.5rem; }
+            /* ---------- Desplegables ---------- */
+            details.more { margin-top: 0.4rem; }
             details.more > summary {
                 display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem;
-                cursor: pointer; list-style: none; color: var(--accent-text); font-weight: 800;
+                cursor: pointer; list-style: none; color: var(--accent); font-weight: 650; font-size: 0.98rem;
             }
             details.more > summary::-webkit-details-marker { display: none; }
-            details.more > summary::before { content: "+"; display: inline-block; width: 1rem; text-align: center; font-size: 1.2rem; line-height: 1; }
-            details.more[open] > summary::before { content: "−"; }
-            details.more > summary:hover { color: #f3ab8d; }
-            details.more .more-body { padding: 0.25rem 0 0.5rem; }
+            details.more > summary::before {
+                content: ""; width: 0.45rem; height: 0.45rem; margin: 0 0.2rem 0 0.1rem;
+                border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+                transform: rotate(-45deg); transition: transform 0.15s ease;
+            }
+            details.more[open] > summary::before { transform: rotate(45deg); }
+            details.more > summary:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+            .more-body { padding-bottom: 0.5rem; }
 
-            /* Skills */
-            .skill-grid { display: grid; gap: 1.75rem 2.5rem; }
-            @media (min-width: 992px) { .skill-grid { grid-template-columns: 1fr 1fr; } }
-            .skill-group h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
-            .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
+            /* ---------- Skills ---------- */
+            .skill-group { padding: 1.1rem 0; border-top: 1px solid var(--line); }
+            .skill-group:first-child { border-top: 0; padding-top: 0; }
+            .skill-group h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.7rem; }
+            .skill-note { color: var(--ink-2); font-size: 0.92rem; margin-bottom: 0.7rem; }
+            @media (min-width: 44rem) {
+                .skill-group { display: grid; grid-template-columns: 15rem minmax(0, 1fr); column-gap: 1.5rem; align-items: start; }
+                .skill-group h3 { grid-column: 1; margin: 0.2rem 0 0; }
+                .skill-note { grid-column: 1; margin: 0.3rem 0 0; }
+                .skill-group .chips { grid-column: 2; grid-row: 1 / span 2; }
+            }
+            .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; }
             .chips li {
-                background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
-                padding: 0.3rem 0.85rem; font-size: 0.95rem; color: var(--ink);
+                padding: 0.18rem 0.6rem; border: 1px solid var(--line); border-radius: 4px;
+                background: var(--panel); font-size: 0.93rem; line-height: 1.5;
             }
-            .skill-note { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 0.75rem; }
 
-            /* Proyectos */
-            .project-grid { display: grid; gap: 1.5rem; }
-            @media (min-width: 1200px) { .project-grid { grid-template-columns: 1fr 1fr; } }
-            .project {
-                background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem;
-                padding: 1.5rem; display: flex; flex-direction: column;
+            /* ---------- Proyectos ---------- */
+            .project { padding: 1.75rem 0; border-top: 1px solid var(--line); }
+            .project:last-child { padding-bottom: 0; }
+            .project h3 { font-size: 1.3rem; font-weight: 750; font-stretch: 88%; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 0.45rem; }
+            .project-meta { color: var(--ink-2); font-size: 0.93rem; margin-bottom: 0.85rem; }
+            .project .chips { margin: 0.9rem 0 0.6rem; }
+            .project-links { display: flex; flex-wrap: wrap; gap: 0 1.75rem; font-weight: 650; font-size: 0.98rem; }
+            .project-links a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; }
+
+            /* ---------- Educación ---------- */
+            .edu { display: flex; flex-direction: column; gap: 0.15rem; padding: 1.05rem 0; border-top: 1px solid var(--line); }
+            .edu:first-child { border-top: 0; padding-top: 0; }
+            .edu:last-child { padding-bottom: 0; }
+            .edu h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+            .edu .extra { font-size: 0.98rem; }
+            .edu .where { color: var(--ink-2); font-size: 0.98rem; }
+            .edu-date { font-weight: 650; font-size: 0.95rem; white-space: nowrap; }
+            @media (min-width: 44rem) {
+                .edu { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 2rem; }
+                .edu-date { flex-shrink: 0; }
             }
-            .project h3 {
-                font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                font-size: 1.2rem; font-weight: 800; text-transform: none; line-height: 1.3; margin-bottom: 0.4rem;
-            }
-            .project-meta { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 0.9rem; }
-            .project .chips { margin: 0.25rem 0 1.1rem; }
-            .project .chips li { background: #222; font-size: 0.85rem; }
-            .project-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: auto; font-weight: 800; }
-            .project-links a { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.75rem; }
 
-            /* Educación */
-            .edu { display: flex; flex-direction: column; gap: 0.15rem; margin-bottom: 1.75rem; }
-            @media (min-width: 768px) { .edu { flex-direction: row; justify-content: space-between; gap: 2rem; } }
-            .edu h3 { font-size: 1.5rem; margin: 0; }
-            .edu .where { color: var(--ink-soft); }
-            .edu .extra { color: var(--ink); }
-            .edu-date { color: var(--accent-text); font-weight: 800; white-space: nowrap; flex-shrink: 0; }
-
-            /* Certificaciones */
-            .cert-group { border-top: 1px solid var(--line); }
+            /* ---------- Certificaciones ---------- */
+            .cert-group { margin: 0; border-top: 1px solid var(--line); }
             .cert-group:last-of-type { border-bottom: 1px solid var(--line); }
-            .cert-group > summary { width: 100%; justify-content: flex-start; padding: 0.35rem 0; }
-            .cert-group .count { color: var(--ink-soft); font-weight: 400; }
-            .cert-list { list-style: none; padding: 0 0 0.75rem 1.5rem; margin: 0; max-width: 52rem; }
-            .cert-list li { padding: 0.25rem 0; }
-            .cert-list .meta { color: var(--ink-soft); }
+            details.cert-group > summary { display: flex; width: 100%; padding: 0.35rem 0; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+            details.cert-group > summary::before { color: var(--accent); }
+            .cert-group .count { color: var(--ink-2); font-weight: 400; }
+            .cert-list { list-style: none; padding: 0 0 1rem 1.35rem; }
+            .cert-list li { padding: 0.28rem 0; font-size: 0.98rem; line-height: 1.45; }
+            .cert-list .meta { color: var(--ink-2); }
 
-            footer.site-footer { padding: 2rem 1rem 3rem; color: var(--ink-soft); font-size: 0.9rem; }
-            @media (min-width: 992px) { footer.site-footer { padding-left: 3rem; } }
+            .site-footer {
+                max-width: 76rem; margin: 0 auto; padding: 2rem clamp(1.25rem, 4vw, 3rem) 3rem;
+                border-top: 1px solid var(--line); color: var(--ink-2); font-size: 0.9rem;
+            }
 
-            @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+            @media (prefers-reduced-motion: reduce) {
+                html { scroll-behavior: auto; }
+                details.more > summary::before { transition: none; }
+            }
 
-            /* Versión para imprimir o guardar como PDF */
+            /* ---------- Versión para imprimir o guardar como PDF ---------- */
             @media print {
-                @page { margin: 1.6cm 1.5cm; }
-                html, body { background: #fff !important; color: #1b1b1b !important; }
-                body { padding: 0 !important; font-size: 10.5pt; }
-                #sideNav, .skip-link, .no-print, hr { display: none !important; }
-                section.resume-section, section.resume-section:not(#about) {
-                    display: block; min-height: 0; max-width: none; padding: 0 0 0.9cm !important;
+                @page { margin: 1.5cm; }
+                :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+                    --bg: #fff; --panel: #fff; --ink: #111; --ink-2: #444; --line: #bbb; --accent: #7B1E3F; --accent-weak: #E3C3CE;
                 }
-                .resume-section h1 { color: #000 !important; font-size: 30pt; }
-                .resume-section h2 { color: #000; font-size: 18pt; margin-bottom: 0.4cm !important; border-bottom: 1px solid #999; }
-                .resume-section h3, .role-title, .xp li strong, .tools strong, .label, .project h3 { color: #000; }
-                .resume-section h3 { font-size: 13pt; }
-                .text-primary, .headline, .xp-date, .role-date, .edu-date, .resume-section a,
-                details.more > summary { color: #8a3d1f !important; }
-                .xp-head .subheading, .xp-date span, .role-date span, .xp-about, .section-intro,
-                .project-meta, .edu .where, .edu .extra, .cert-list .meta, .cert-group .count,
-                .skill-note, footer.site-footer { color: #444 !important; }
-                .about-text p { font-size: 10.5pt; max-width: none; }
-                .about-photo { display: none !important; }
-                .section-intro { margin: 0 0 0.4cm; max-width: none; }
-                .subheading, .xp-head .subheading { font-size: 11pt; }
-                .headline { font-size: 13pt; }
-                .xp ul, .tools, .xp-about { max-width: none; }
-                .xp li { margin-bottom: 0.1cm; }
-                .project { padding: 0.4cm; }
-                .project-grid, .skill-grid { gap: 0.4cm; }
+                body { font-size: 10pt; }
+                .site-header, .skip-link, .no-print, .portrait { display: none !important; }
+                main { max-width: none; padding: 0; }
+                .section, .section.hero { display: block; padding: 0 0 0.7cm; border: 0; }
+                .gutter h2 { position: static; font-size: 16pt; margin-bottom: 0.35cm; padding-bottom: 0.1cm; border-bottom: 1px solid #999; }
+                h1 { font-size: 30pt; margin-bottom: 0.2cm; }
+                .headline { font-size: 12pt; }
+                .subheading.contact { margin-bottom: 0.15cm; }
+                .contact-print { display: block; color: #444; margin-bottom: 0.4cm; }
+                .about-text p, .about-text p:first-child { font-size: 10pt; line-height: 1.5; max-width: none; margin-bottom: 0.2cm; }
+                .section-intro { max-width: none; margin-bottom: 0.3cm; }
+                .axis { display: none; }
+                .track { margin-bottom: 0.2cm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+                .xp { margin-bottom: 0.6cm; }
+                .xp h3, .project h3 { font-size: 12pt; }
+                .xp li { margin-bottom: 0.08cm; }
+                .role { margin-top: 0.4cm; }
+                .xp-head, .edu { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 1cm; }
+                .xp-date { text-align: right; flex-shrink: 0; }
+                .skill-group { padding: 0.2cm 0; }
+                .project { padding: 0.35cm 0; }
                 .project-links a { min-height: 0; }
-                .xp { margin-bottom: 0.7cm; }
-                .role { border-left-color: #bbb; }
-                .chips li, .project, .project .chips li { background: #fff !important; border-color: #bbb !important; color: #1b1b1b !important; }
-                .project, .role, .edu, .skill-group, .cert-list li { break-inside: avoid; }
-                h2, h3, .role-head, .xp-head, summary { break-after: avoid; }
+                .edu { padding: 0.18cm 0; }
+                a { color: var(--ink); text-decoration: none; }
+                .project-links a { color: var(--accent); }
                 details.more:not(.cert-group), .cert-list { display: none !important; }
                 .cert-group, .cert-group:last-of-type { border: 0; }
-                .cert-group > summary { min-height: 0; padding: 0.08cm 0; color: #1b1b1b !important; font-weight: 400; }
-                details.more > summary::before { content: "•"; }
-                .print-note { display: block !important; color: #444; margin-top: 0.4cm; }
-                .contact-print { display: block !important; color: #444; }
+                .cert-group > summary { min-height: 0; padding: 0.06cm 0; font-weight: 400; font-size: 10pt; }
+                .cert-group > summary::before { display: none; }
+                .print-note { display: block; color: #444; margin-top: 0.4cm; }
+                .site-footer { border: 0; padding: 0; }
+                .project, .role, .edu, .skill-group { break-inside: avoid; }
+                h2, h3, .role-head, .xp-head, .track { break-after: avoid; }
             }
-            .contact-print, .print-note { display: none; }
         </style>
-
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -244,39 +374,39 @@
 
     <body id="page-top">
         <a class="skip-link" href="#about">Saltar al contenido</a>
+        <!-- Íconos: Font Awesome Free 7.3.1, https://fontawesome.com/license/free (CC BY 4.0) -->
+        <svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-linkedin-in" viewBox="0 0 448 512"><path d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/></symbol><symbol id="i-github" viewBox="0 0 512 512"><path d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5l0 52C323 491.5 335.5 500 350.5 494 441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5l0-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21z"/></symbol><symbol id="i-graduation-cap" viewBox="0 0 576 512"><path d="M48 195.8l209.2 86.1c9.8 4 20.2 6.1 30.8 6.1s21-2.1 30.8-6.1l242.4-99.8c9-3.7 14.8-12.4 14.8-22.1s-5.8-18.4-14.8-22.1L318.8 38.1C309 34.1 298.6 32 288 32s-21 2.1-30.8 6.1L14.8 137.9C5.8 141.6 0 150.3 0 160L0 456c0 13.3 10.7 24 24 24s24-10.7 24-24l0-260.2zm48 71.7L96 384c0 53 86 96 192 96s192-43 192-96l0-116.6-142.9 58.9c-15.6 6.4-32.2 9.7-49.1 9.7s-33.5-3.3-49.1-9.7L96 267.4z"/></symbol><symbol id="i-envelope" viewBox="0 0 512 512"><path d="M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z"/></symbol><symbol id="i-file-pdf" viewBox="0 0 576 512"><path d="M96 0C60.7 0 32 28.7 32 64l0 384c0 35.3 28.7 64 64 64l80 0 0-112c0-35.3 28.7-64 64-64l176 0 0-165.5c0-17-6.7-33.3-18.7-45.3L290.7 18.7C278.7 6.7 262.5 0 245.5 0L96 0zM357.5 176L264 176c-13.3 0-24-10.7-24-24L240 58.5 357.5 176zM240 380c-11 0-20 9-20 20l0 128c0 11 9 20 20 20s20-9 20-20l0-28 12 0c33.1 0 60-26.9 60-60s-26.9-60-60-60l-32 0zm32 80l-12 0 0-40 12 0c11 0 20 9 20 20s-9 20-20 20zm96-80c-11 0-20 9-20 20l0 128c0 11 9 20 20 20l32 0c28.7 0 52-23.3 52-52l0-64c0-28.7-23.3-52-52-52l-32 0zm20 128l0-88 12 0c6.6 0 12 5.4 12 12l0 64c0 6.6-5.4 12-12 12l-12 0zm88-108l0 128c0 11 9 20 20 20s20-9 20-20l0-44 28 0c11 0 20-9 20-20s-9-20-20-20l-28 0 0-24 28 0c11 0 20-9 20-20s-9-20-20-20l-48 0c-11 0-20 9-20 20z"/></symbol></svg>
 
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" aria-label="Secciones">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Horacio Gaido</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/horacio_gaido.jpeg" alt="Foto de Horacio Gaido" /></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Abrir o cerrar el menú"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Sobre mí</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experiencia</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Proyectos</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Educación</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Certificaciones</a></li>
-                </ul>
+        <!-- Encabezado-->
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a class="brand" href="#page-top">Horacio Gaido</a>
+                <nav class="site-nav" id="sideNav" aria-label="Secciones">
+                    <ul>
+                        <li><a href="#about">Sobre mí</a></li>
+                        <li><a href="#experience">Experiencia</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Proyectos</a></li>
+                        <li><a href="#education">Educación</a></li>
+                        <li><a href="#awards">Certificaciones</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle no-print" type="button" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro" title="Tema claro u oscuro"><svg class="ico sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.2v2.6M12 19.2v2.6M2.2 12h2.6M19.2 12h2.6M5.1 5.1l1.8 1.8M17.1 17.1l1.8 1.8M5.1 18.9l1.8-1.8M17.1 6.9l1.8-1.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="ico moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.2 14.4A8.4 8.4 0 0 1 9.6 3.8a8.4 8.4 0 1 0 10.6 10.6z"/></svg></button>
             </div>
-        </nav>
+        </header>
 
         <!-- Page Content-->
-        <main class="container-fluid p-0">
+        <main>
 
             <!-- About-->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <img class="about-photo rounded-circle d-lg-none mb-4" src="images/horacio_gaido.jpeg" alt="Foto de Horacio Gaido" />
-                    <h1 class="mb-0">
-                        Horacio
-                        <span class="text-primary">Gaido</span>
-                    </h1>
+            <section class="section hero" id="about">
+                <div class="gutter">
+                    <img class="portrait" src="images/horacio_gaido.jpeg" alt="Foto de Horacio Gaido" width="1196" height="1277" />
+                </div>
+                <div class="content">
+                    <h1>Horacio Gaido</h1>
                     <div class="subheading headline">Analista de Datos · Business Intelligence · Automatización de procesos</div>
-                    <div class="subheading mb-5">
+                    <div class="subheading contact">
                         Mendoza, Argentina ·
                         <a href="mailto:horaciogaido@gmail.com">horaciogaido@gmail.com</a>
                     </div>
@@ -291,26 +421,29 @@
 
                     <div class="about-actions no-print">
                         <div class="social-icons">
-                            <a class="social-icon" href="https://www.linkedin.com/in/horacio-gaido" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Horacio Gaido (se abre en una pestaña nueva)" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                            <a class="social-icon" href="https://github.com/horacio-gaido" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Horacio Gaido (se abre en una pestaña nueva)" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
-                            <a class="social-icon" href="https://platzi.com/p/horaciogaido/" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Horacio Gaido en Platzi (se abre en una pestaña nueva)" title="Platzi"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
-                            <a class="social-icon" href="mailto:horaciogaido@gmail.com" aria-label="Enviar un correo a Horacio Gaido" title="Correo"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                            <a class="social-icon" href="https://www.linkedin.com/in/horacio-gaido" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Horacio Gaido (se abre en una pestaña nueva)" title="LinkedIn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-linkedin-in"/></svg></a>
+                            <a class="social-icon" href="https://github.com/horacio-gaido" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Horacio Gaido (se abre en una pestaña nueva)" title="GitHub"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-github"/></svg></a>
+                            <a class="social-icon" href="https://platzi.com/p/horaciogaido/" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Horacio Gaido en Platzi (se abre en una pestaña nueva)" title="Platzi"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-graduation-cap"/></svg></a>
+                            <a class="social-icon" href="mailto:horaciogaido@gmail.com" aria-label="Enviar un correo a Horacio Gaido" title="Correo"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg></a>
                         </div>
-                        <button class="btn-outline-accent" type="button" id="printCv"><i class="fas fa-file-pdf" aria-hidden="true"></i> Guardar como PDF</button>
+                        <button class="btn-outline-accent" type="button" id="printCv"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-file-pdf"/></svg> Guardar como PDF</button>
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
 
             <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Experiencia</h2>
+            <section class="section" id="experience">
+                <div class="gutter">
+                    <h2>Experiencia</h2>
+                </div>
+                <div class="content">
+                    <div class="axis" aria-hidden="true"><span style="left:0.00%">2006</span><span style="left:19.05%">2010</span><span style="left:42.86%">2015</span><span style="left:66.67%">2020</span><span style="left:90.48%">2025</span></div>
 
                     <article class="xp">
+                        <div class="track" aria-hidden="true"><i class="at" style="--s:82.54%;--w:16.67%"></i></div>
                         <header class="xp-head">
                             <div>
-                                <h3 class="mb-0">Analista de Datos | Business Intelligence</h3>
+                                <h3>Analista de Datos | Business Intelligence</h3>
                                 <div class="subheading">Midas Consultores · Cliente: YPF S.A.</div>
                             </div>
                             <div class="xp-date">may 2023 – actualidad<span>Mendoza, Argentina</span></div>
@@ -328,9 +461,10 @@
                     </article>
 
                     <article class="xp">
+                        <div class="track" aria-hidden="true"><i class="at" style="--s:81.75%;--w:0.79%"></i></div>
                         <header class="xp-head">
                             <div>
-                                <h3 class="mb-0">Consultor Freelance</h3>
+                                <h3>Consultor Freelance</h3>
                                 <div class="subheading">Análisis de datos · Trabajo independiente</div>
                             </div>
                             <div class="xp-date">mar 2023 – abr 2023<span>Mendoza, Argentina</span></div>
@@ -343,9 +477,10 @@
                     </article>
 
                     <article class="xp">
+                        <div class="track" aria-hidden="true"><i class="at" style="--s:77.78%;--w:3.97%"></i></div>
                         <header class="xp-head">
                             <div>
-                                <h3 class="mb-0">Formación intensiva en datos</h3>
+                                <h3>Formación intensiva en datos</h3>
                                 <div class="subheading">Dedicación completa · UNCuyo y Platzi</div>
                             </div>
                             <div class="xp-date">may 2022 – feb 2023</div>
@@ -354,9 +489,10 @@
                     </article>
 
                     <article class="xp">
+                        <div class="track" aria-hidden="true"><i class="at" style="--s:62.70%;--w:15.08%"></i></div>
                         <header class="xp-head">
                             <div>
-                                <h3 class="mb-0">Wiber Soluciones en Conectividad</h3>
+                                <h3>Wiber Soluciones en Conectividad</h3>
                                 <div class="subheading">Tecnet Argentina S.A. · Telecomunicaciones</div>
                             </div>
                             <div class="xp-date">mar 2019 – abr 2022<span>3 años y 2 meses</span></div>
@@ -364,6 +500,7 @@
                         <p class="xp-about">Proveedor de servicios de internet (ISP) con conexiones a medida por fibra óptica o wireless para clientes residenciales, pymes y empresas corporativas.</p>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:62.70%;--w:15.08%"></i><i class="at" style="--s:67.46%;--w:10.32%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Administración y finanzas | Controller | Data Analyst</h4>
                                 <div class="role-date">mar 2020 – abr 2022 <span>· Luján de Cuyo, Mendoza</span></div>
@@ -403,6 +540,7 @@
                         </div>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:62.70%;--w:15.08%"></i><i class="at" style="--s:62.70%;--w:4.76%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Jefe de finanzas y administración</h4>
                                 <div class="role-date">mar 2019 – feb 2020</div>
@@ -455,9 +593,10 @@
                     </article>
 
                     <article class="xp">
+                        <div class="track" aria-hidden="true"><i class="at" style="--s:55.56%;--w:7.14%"></i></div>
                         <header class="xp-head">
                             <div>
-                                <h3 class="mb-0">Consultor Independiente</h3>
+                                <h3>Consultor Independiente</h3>
                                 <div class="subheading">Consultoría de gestión y datos para pymes</div>
                             </div>
                             <div class="xp-date">sep 2017 – feb 2019<span>Mendoza, Argentina</span></div>
@@ -500,9 +639,10 @@
                     </article>
 
                     <article class="xp">
+                        <div class="track" aria-hidden="true"><i class="at" style="--s:0.79%;--w:54.76%"></i></div>
                         <header class="xp-head">
                             <div>
-                                <h3 class="mb-0">José Micheli e Hijos S.R.L.</h3>
+                                <h3>José Micheli e Hijos S.R.L.</h3>
                                 <div class="subheading">Alimentos, logística y retail</div>
                             </div>
                             <div class="xp-date">mar 2006 – ago 2017<span>11 años y 6 meses · Maipú, Mendoza</span></div>
@@ -510,6 +650,7 @@
                         <p class="xp-about">Empresa comercializadora y distribuidora de alimentos en la provincia de Mendoza, con logística de corta, media y larga distancia, nacional e internacional.</p>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:0.79%;--w:54.76%"></i><i class="at" style="--s:34.13%;--w:21.43%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Adjunto al Gerente General</h4>
                                 <div class="role-date">mar 2013 – ago 2017</div>
@@ -539,6 +680,7 @@
                         </div>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:0.79%;--w:54.76%"></i><i class="at" style="--s:19.84%;--w:14.29%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Data Analyst</h4>
                                 <div class="role-date">mar 2010 – feb 2013</div>
@@ -568,11 +710,12 @@
                         </div>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:0.79%;--w:54.76%"></i><i class="at" style="--s:10.32%;--w:9.52%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Administración y finanzas</h4>
                                 <div class="role-date">mar 2008 – feb 2010</div>
                             </div>
-                            <p class="mb-1">Análisis financiero y de costos, análisis de mercado y de tendencias de venta, presupuestos y planes de negocio para las empresas del grupo.</p>
+                            <p>Análisis financiero y de costos, análisis de mercado y de tendencias de venta, presupuestos y planes de negocio para las empresas del grupo.</p>
                             <details class="more">
                                 <summary>Funciones y software</summary>
                                 <div class="more-body">
@@ -600,11 +743,12 @@
                         </div>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:0.79%;--w:54.76%"></i><i class="at" style="--s:5.56%;--w:4.76%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Comercialización y logística de corta y mediana distancia</h4>
                                 <div class="role-date">mar 2007 – feb 2008</div>
                             </div>
-                            <p class="mb-1">Supervisión del equipo de logística (25 personas) y de cobranzas minoristas (5 personas), gestión de la cartera de grandes clientes y puesta en marcha de nuevas unidades de negocio.</p>
+                            <p>Supervisión del equipo de logística (25 personas) y de cobranzas minoristas (5 personas), gestión de la cartera de grandes clientes y puesta en marcha de nuevas unidades de negocio.</p>
                             <details class="more">
                                 <summary>Funciones y software</summary>
                                 <div class="more-body">
@@ -629,11 +773,12 @@
                         </div>
 
                         <div class="role">
+                            <div class="track" aria-hidden="true"><i class="co" style="--s:0.79%;--w:54.76%"></i><i class="at" style="--s:0.79%;--w:4.76%"></i></div>
                             <div class="role-head">
                                 <h4 class="role-title">Consultor de gestión empresarial</h4>
                                 <div class="role-date">mar 2006 – feb 2007</div>
                             </div>
-                            <p class="mb-1">Asistencia a la Gerencia General: análisis de procesos, costos logísticos y competencia, y plan de trabajo para mejorar el rendimiento y la rentabilidad.</p>
+                            <p>Asistencia a la Gerencia General: análisis de procesos, costos logísticos y competencia, y plan de trabajo para mejorar el rendimiento y la rentabilidad.</p>
                             <details class="more">
                                 <summary>Funciones y software</summary>
                                 <div class="more-body">
@@ -663,12 +808,13 @@
 
                 </div>
             </section>
-            <hr class="m-0" />
 
             <!-- Skills-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
+            <section class="section" id="skills">
+                <div class="gutter">
+                    <h2>Skills</h2>
+                </div>
+                <div class="content">
                     <div class="skill-grid">
                         <div class="skill-group">
                             <h3>Datos y programación</h3>
@@ -702,12 +848,13 @@
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
 
             <!-- Projects-->
-            <section class="resume-section" id="projects">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Proyectos</h2>
+            <section class="section" id="projects">
+                <div class="gutter">
+                    <h2>Proyectos</h2>
+                </div>
+                <div class="content">
                     <p class="section-intro">Trabajos de investigación con datos públicos. Los desarrollos que hago para YPF S.A. son confidenciales y no se publican.</p>
 
                     <div class="project-grid">
@@ -719,8 +866,8 @@
                                 <li>Python</li><li>SciPy</li><li>scikit-learn</li><li>Jupyter Notebook</li><li>Pruebas de hipótesis</li>
                             </ul>
                             <div class="project-links">
-                                <a href="assets/pdf/citas_rapidas.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf" aria-hidden="true"></i> Informe (PDF, 45 páginas)</a>
-                                <a href="https://github.com/horacio-gaido/speed-dating-experiment" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Repositorio en GitHub</a>
+                                <a href="assets/pdf/citas_rapidas.pdf" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-file-pdf"/></svg> Informe (PDF, 45 páginas)</a>
+                                <a href="https://github.com/horacio-gaido/speed-dating-experiment" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> Repositorio en GitHub</a>
                             </div>
                         </article>
 
@@ -732,8 +879,8 @@
                                 <li>Jupyter Notebook</li><li>Análisis exploratorio</li><li>Correlaciones</li><li>Visualización</li>
                             </ul>
                             <div class="project-links">
-                                <a href="assets/pdf/las_dimensiones_de_la_calidad_de_vida.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf" aria-hidden="true"></i> Informe (PDF, 5 páginas)</a>
-                                <a href="https://github.com/horacio-gaido/dimensions_of_quality_of_life" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Repositorio en GitHub</a>
+                                <a href="assets/pdf/las_dimensiones_de_la_calidad_de_vida.pdf" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-file-pdf"/></svg> Informe (PDF, 5 páginas)</a>
+                                <a href="https://github.com/horacio-gaido/dimensions_of_quality_of_life" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> Repositorio en GitHub</a>
                             </div>
                         </article>
 
@@ -745,18 +892,19 @@
                                 <li>Análisis fundamental</li><li>Análisis técnico</li><li>Mercado de capitales</li>
                             </ul>
                             <div class="project-links">
-                                <a href="assets/pdf/analisis_cedear_berkshire_hathaway.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf" aria-hidden="true"></i> Informe (PDF, 15 páginas)</a>
+                                <a href="assets/pdf/analisis_cedear_berkshire_hathaway.pdf" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-file-pdf"/></svg> Informe (PDF, 15 páginas)</a>
                             </div>
                         </article>
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
 
             <!-- Education-->
-            <section class="resume-section" id="education">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Educación</h2>
+            <section class="section" id="education">
+                <div class="gutter">
+                    <h2>Educación</h2>
+                </div>
+                <div class="content">
                     <div class="edu">
                         <div>
                             <h3>Diplomado en Inteligencia de Datos en la Gestión de las Organizaciones</h3>
@@ -835,12 +983,13 @@
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
 
             <!-- Awards-->
-            <section class="resume-section" id="awards">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Certificaciones y cursos</h2>
+            <section class="section" id="awards">
+                <div class="gutter">
+                    <h2>Certificaciones y cursos</h2>
+                </div>
+                <div class="content">
                     <p class="section-intro">Agrupados por tema. Los certificados de Platzi se pueden consultar en <a href="https://platzi.com/p/horaciogaido/" target="_blank" rel="noopener noreferrer">mi perfil público</a>.</p>
 
                     <!--
@@ -848,7 +997,7 @@
                     En LinkedIn figura el reconocimiento "Ganadores mejor proyecto". Para mostrarlo acá,
                     completá el proyecto, la institución y el año, y sacá este bloque del comentario:
 
-                    <p><i class="fas fa-award" aria-hidden="true"></i> <strong>Ganadores al mejor proyecto</strong> · NOMBRE DEL PROYECTO · INSTITUCIÓN · AÑO</p>
+                    <p><strong>Ganadores al mejor proyecto</strong> · NOMBRE DEL PROYECTO · INSTITUCIÓN · AÑO</p>
                     -->
 
                     <details class="more cert-group" open>
@@ -962,15 +1111,44 @@
             © 2026 Horacio Gaido · Última actualización: octubre de 2026
         </footer>
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
         <script>
-            // "Guardar como PDF": abre el diálogo de impresión del navegador con la versión resumida
             (function () {
+                // Tema claro / oscuro: sigue al sistema hasta que se elige uno con el botón
+                var root = document.documentElement;
+                var toggle = document.getElementById('themeToggle');
+                if (toggle) {
+                    toggle.addEventListener('click', function () {
+                        var current = root.getAttribute('data-theme') ||
+                            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                        var next = current === 'dark' ? 'light' : 'dark';
+                        root.setAttribute('data-theme', next);
+                        try { localStorage.setItem('theme', next); } catch (e) {}
+                    });
+                }
+
+                // "Guardar como PDF": abre el diálogo de impresión del navegador con la versión resumida
                 var btn = document.getElementById('printCv');
                 if (btn) { btn.addEventListener('click', function () { window.print(); }); }
+
+                // Marca en el menú la sección que se está leyendo
+                var links = {};
+                document.querySelectorAll('.site-nav a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+                if ('IntersectionObserver' in window) {
+                    var io = new IntersectionObserver(function (entries) {
+                        entries.forEach(function (en) {
+                            if (!en.isIntersecting) { return; }
+                            Object.keys(links).forEach(function (id) {
+                                if (id === en.target.id) {
+                                    links[id].setAttribute('aria-current', 'true');
+                                    var nav = links[id].closest('.site-nav');
+                                    if (nav && nav.scrollWidth > nav.clientWidth) { nav.scrollLeft = links[id].offsetLeft - 20; }
+                                }
+                                else { links[id].removeAttribute('aria-current'); }
+                            });
+                        });
+                    }, { rootMargin: '-45% 0px -50% 0px' });
+                    document.querySelectorAll('main > section[id]').forEach(function (s) { io.observe(s); });
+                }
             })();
         </script>
     </body>
